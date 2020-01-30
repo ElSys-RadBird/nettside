@@ -80,7 +80,7 @@ blockquote {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: white;
   transition: all 0.3s ease;
 }
 
@@ -90,7 +90,7 @@ blockquote {
 }
 
 .navbar-brand {
-  color: white;
+  color: #369;
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -109,7 +109,7 @@ blockquote {
 }
 
 .tm-nav-link {
-  color: white;
+  color: #369;
 }
 
 .tm-navbar.scroll .tm-nav-link {
