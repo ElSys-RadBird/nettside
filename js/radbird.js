@@ -1,4 +1,5 @@
   // Your web app's Firebase configuration
+  
   var firebaseConfig = {
     apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
     authDomain: "radbird-elsys.firebaseapp.com",
@@ -11,11 +12,13 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
-  var db =firebase.database().ref();
-  db.ref("node1/").on("value",function(snapshot){
-    console.log(snapshot);
-    document.getElementById("tid").innerHTML="Tid:";
-    //document.getElementById("aktivitet").innerHTML=
-    //document.getElementById("funker").innerHTML=
+  //var db =firebase.database();
+  var data=firebase.database().ref("node1/");
+  data.on('value',function(snapshot){
+    console.log(snapshot.val());
+    data=snapshot.val();
+    document.getElementById("tid").innerHTML="Tid:"+data.tid;
+    document.getElementById("aktivitet").innerHTML= "Aktivitet: " +data.aktivitet;
+    document.getElementById("funker").innerHTML= "Aktiv: "+ data.funker;
 
-  });
+  });   
