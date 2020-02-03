@@ -21,4 +21,5 @@
     document.getElementById("aktivitet").innerHTML= "Aktivitet: " +data.aktivitet;
     document.getElementById("funker").innerHTML= "Aktiv: "+ data.funker;
 
+
   });   
