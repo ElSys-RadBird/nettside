@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,9 +11,14 @@
     <link rel="stylesheet" href="magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/tooplate-infinite-loop.css" />
-
-
-
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+    <script src="js/radbird.js"></script>
+    
+    <!--
+Tooplate 2117 Infinite Loop
+https://www.tooplate.com/view/2117-infinite-loop
+-->
   </head>
   <link rel="icon" href="img/icon.png">
   <body>    
@@ -24,10 +29,10 @@
         <div class="container">   
           <div class="tm-next">
               <a href="#infinite" class="navbar-brand">RADBIRD</a>
-          </div>             
-            
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars navbar-toggler-icon"></i>
+
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
@@ -38,11 +43,13 @@
                 <a class="nav-link tm-nav-link" href="#kart">Kart</a>
               </li>
               <li class="nav-item">
-
+                <a class="nav-link tm-nav-link" href="#data">Data</a>
+              </li>  
+              <li class="nav-item">
                <a class="nav-link tm-nav-link" href="#whatwedo">Hva gjør vi?</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#testimonials">Om oss</a>
+                <a class="nav-link tm-nav-link" href="#testimonials">Brage</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link tm-nav-link" href="#gallery">Galleri</a>
@@ -70,9 +77,8 @@
         </a>
       </div>      
     </section>
-    
-  </section>
-  <section id="kart" class="tm-section-pad-top"> <!--Her skal kartet implemnteres-->
+
+    <section id="kart" class="tm-section-pad-top"> <!--Her skal kartet implemnteres-->
     <div class="container">
       <div class="col-lg-12 col-xl-12">
         <div class="text-center col-12">
@@ -84,24 +90,30 @@
           var nodeMap = {
             blitzerman: {
               center: {lat: 63.421550, lng: 10.12148},
-              diameter: 100
+              diameter: 100,
+              text: '1'
             },
             gazerbeam: {
               center: {lat: 63.42000, lng: 10.11946},
-              diameter: 100
+              diameter: 100,
+              text: '2'
             },
             stormicide: {
               center: {lat: 63.42000, lng: 10.12350},
-              diameter: 100
+              diameter: 100,
+              text: '3'
             }
           };
-    
-          
+
+
+
+
+
           function initMap() {
             // Create the map
             var map = new google.maps.Map(document.getElementById('map'), {
               center: {lat: 63.42092, lng: 10.12167},
-              zoom: 16,
+              zoom: 14.5,
               mapTypeId: 'satellite'
             });
     
@@ -117,6 +129,18 @@
                 center: nodeMap[node].center,
                 radius: nodeMap[node].diameter
               });
+              //var mapLabel = new google.maps.mapLabel({
+              //text: nodeMap[node].text,
+              //position: nodeMap[node].center,
+              //map: map,
+              //fontSize: 35,
+              //align: 'center'
+              //});
+              //mapLabel.set('position', new google.maps.LatLng(nodeMap[node].center));
+
+              //var marker = new google.maps.Marker();
+              //marker.bindTo('map', mapLabel);
+              //marker.bindTo('position', mapLabel);
             }
           }
           // The following script contains an unrestricted API key connected to my PERSONAL google cloud console profile. It will charge me economically if overused. Therefore: Do NOT spread it around - Andreas
@@ -124,6 +148,27 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
       </div>
     </div>
+  </section>
+
+  <section id="data" class="tm-section-pad-top">
+    <div class="container">
+
+      <div class="row tm-content-box">
+        <div class="col-lg-12 col-xl-12">
+          <div class=tm-intro-text-container">
+            <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
+            <h3>Node 1</h3>
+            <p class="mb-4 tm-intro-text">
+              <pre id="tid"></pre>
+              <pre id="funker"></pre>
+              <pre id="aktivitet"></pre>
+<!--              <script scr="js/radbird.js"></script>-->
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+      
   </section>
     
       <section id="whatwedo" class="tm-section-pad-top">
@@ -147,9 +192,9 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Statestikk</h2>
+                        <h2 class="tm-text-primary mb-4">Statistikk</h2>
                         <p class="mb-4 tm-intro-text">
-                          Vi lever detaljert statestikk over fugleaktiviteten i området, merket med tidspunkt og lengde på aktivitet.</p>
+                          Vi lever detaljert statistikk over fugleaktiviteten i området, merket med tidspunkt og lengde på aktivitet.</p>
                     </div>
                 </div>
                 
