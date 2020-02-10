@@ -11,7 +11,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+/*
   //var db =firebase.database();
   var data=firebase.database().ref("node1/");
   data.on('value',function(snapshot){
@@ -21,4 +21,6 @@
     document.getElementById("aktivitet").innerHTML= "Aktivitet: " +data.aktivitet;
     document.getElementById("funker").innerHTML= "Aktiv: "+ data.funker;
 
+
   });   
+*/
