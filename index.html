@@ -155,8 +155,8 @@ https://www.tooplate.com/view/2117-infinite-loop
             </p>
           -->
           <div align="right">
-          <button class="btn" onclick="myfunc()">Siste uken</button>
-          <button class="btn">Siste måneden</button>
+          <button class="btn" onclick="myChart([100,30,40])">Siste uken</button>
+          <button class="btn" onclick="myChart([4,76,90])">Siste måneden</button>
           <button class="btn"> Siste 6 månedene</button>
           <button class="btn">Siste året</button>
           </div>
@@ -174,22 +174,16 @@ https://www.tooplate.com/view/2117-infinite-loop
               // Initialize Firebase
               firebase.initializeApp(firebaseConfig);
 
-
-              var data_last;
-          
-              
-              function myfunc(){
-                data_last=[20,10,10]
-              };
+              var db =firebase.database();
             
             var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
+function myChart(data_set){ new Chart(ctx, {
     type: 'bar',
     data: {
         labels: ['Node 1 ', 'Node 2', 'Node 3'],
         datasets: [{
             label: 'Antall minutter med fugleaktivitet',
-            data: data_last,
+            data: data_set,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -215,6 +209,13 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+}
+var dato_uke=Date(Date.now()-(24*60*60*7));
+var data_node_1 =firebas.database().ref("node1/")
+data_node_1.orderBy("timestamp").startAt(dato)
+myChart([10,30,15]);
+
+            
 
           </script>
           </div>
