@@ -155,7 +155,7 @@ https://www.tooplate.com/view/2117-infinite-loop
             </p>
           -->
           <div align="right">
-          <button class="btn" onclick="myChart([100,30,40])">Siste uken</button>
+          <button class="btn" onclick="myChart(get_data(4))">Siste uken</button>
           <button class="btn" onclick="myChart([4,76,90])">Siste måneden</button>
           <button class="btn"> Siste 6 månedene</button>
           <button class="btn">Siste året</button>
@@ -210,12 +210,40 @@ function myChart(data_set){ new Chart(ctx, {
     }
 });
 }
-var dato_uke=Date(Date.now()-(24*60*60*7));
-var data_node_1 =firebas.database().ref("node1/")
-data_node_1.orderBy("timestamp").startAt(dato)
-myChart([10,30,15]);
 
-            
+function get_node_data(node,tid){
+var lengde_node= 0;
+var ref =firebase.database().ref(node)
+ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
+ var node_data=snapshot.val();
+ console.log(node_data)
+ for(var key in node_data ){
+   if (key=="aktivitet"){
+     lengde_node=0;
+     break
+   }
+   else{
+     if(node_data.hasOwnProperty(key)){
+         lengde_node++
+     }
+
+    }
+ }
+ })
+ console.log(lengde_node)
+ return lengde_node;
+}
+
+function get_data(tid){
+var data_set=[]
+data_set.push(get_node_data("node1/",tid))
+data_set.push(get_node_data("node2/",tid))
+data_set.push(get_node_data("node3/",tid))
+console.log(data_set)
+return data_set;
+}
+myChart(get_data(4)); 
+myChart(get_data(4));     
 
           </script>
           </div>
