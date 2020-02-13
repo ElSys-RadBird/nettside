@@ -137,7 +137,7 @@ https://www.tooplate.com/view/2117-infinite-loop
   <section id="data" class="tm-section-pad-top">
     <div class="container">
 
-      <div class="row tm-content-box">
+      <!-- <div class="row tm-content-box">
         <div class="col-lg-12 col-xl-12">
           <div class=tm-intro-text-container">
             <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
@@ -151,7 +151,53 @@ https://www.tooplate.com/view/2117-infinite-loop
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+  
+    <!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	exportEnabled: true,
+	theme: "light1", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Simple Column Chart with Index Labels"
+	},
+	data: [{
+		type: "column", //change type to bar, line, area, pie, etc
+		//indexLabel: "{y}", //Shows y value on all Data Points
+		indexLabelFontColor: "#5A5757",
+		indexLabelPlacement: "outside",
+		dataPoints: [
+			{ x: 10, y: 71 },
+			{ x: 20, y: 55 },
+			{ x: 30, y: 50 },
+			{ x: 40, y: 65 },
+			{ x: 50, y: 92, indexLabel: "Høyest" },
+			{ x: 60, y: 68 },
+			{ x: 70, y: 38 },
+			{ x: 80, y: 71 },
+			{ x: 90, y: 54 },
+			{ x: 100, y: 60 },
+			{ x: 110, y: 36 },
+			{ x: 120, y: 49 },
+			{ x: 130, y: 21, indexLabel: "Lavest" }
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
       
   </section>
     
@@ -176,9 +222,9 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Statestikk</h2>
+                        <h2 class="tm-text-primary mb-4">Statistikk</h2>
                         <p class="mb-4 tm-intro-text">
-                          Vi lever detaljert statestikk over fugleaktiviteten i området, merket med tidspunkt og lengde på aktivitet.</p>
+                          Vi lever detaljert statistikk over fugleaktiviteten i området, merket med tidspunkt og lengde på aktivitet.</p>
                     </div>
                 </div>
                 
