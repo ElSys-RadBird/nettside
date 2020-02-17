@@ -170,10 +170,10 @@ https://www.tooplate.com/view/2117-infinite-loop
             </p>
           -->
           <div align="right">
-          <button class="btn" onclick="myChart(get_data(4))">Siste uken</button>
-          <button class="btn" onclick="myChart([4,76,90])">Siste måneden</button>
-          <button class="btn"> Siste 6 månedene</button>
-          <button class="btn">Siste året</button>
+          <button class="btn" onclick="myChart(get_data(514800000))">Siste uken</button>
+          <button class="btn"onclick="myChart(get_data(2.62974383*Math.pow(10,9)))">Siste måneden</button>
+          <button class="btn"onclick="myChart(get_data(1.5778463*Math.pow(10,10)))"> Siste 6 månedene</button>
+          <button class="btn"onclick="myChart(get_data(3.1556926*Math.pow(10,10 )))">Siste året</button>
           </div>
           <canvas id="myChart" width="500" height="250"></canvas>
           <script scr="js/radbird.js">
@@ -184,7 +184,7 @@ https://www.tooplate.com/view/2117-infinite-loop
                 projectId: "radbird-elsys",
                 storageBucket: "radbird-elsys.appspot.com",
                 messagingSenderId: "78896005129",   
-                appId: "1:78896005129:web:9faab86bab14880b3db8d8"
+                appId: "1:78896005129:web:9faab86bab14880b3db8d8",
               };
               // Initialize Firebase
               firebase.initializeApp(firebaseConfig);
@@ -231,7 +231,6 @@ var lengde_node= 0;
 var ref =firebase.database().ref(node)
 ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
  var node_data=snapshot.val();
- console.log(node_data)
  for(var key in node_data ){
    if (key=="aktivitet"){
      lengde_node=0;
@@ -250,10 +249,11 @@ ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
 }
 
 function get_data(tid){
+var un_time= new Date()
 var data_set=[]
-data_set.push(get_node_data("node1/",tid))
-data_set.push(get_node_data("node2/",tid))
-data_set.push(get_node_data("node3/",tid))
+data_set.push(get_node_data("node1/",un_time.getTime()-tid))
+data_set.push(get_node_data("node2/",un_time.getTime()-tid))
+data_set.push(get_node_data("node3/",un_time.getTime()-tid))
 console.log(data_set)
 return data_set;
 }
