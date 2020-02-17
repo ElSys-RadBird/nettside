@@ -1,3 +1,3 @@
 # nettside
 Nettsidekode for RadBird
-https://radbird-jizz.firebaseapp.com
+https://radbird-elsys.firebaseapp.com

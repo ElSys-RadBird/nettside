@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="no">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,12 +11,20 @@
     <link rel="stylesheet" href="magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/tooplate-infinite-loop.css" />
-<!--
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <!--
 Tooplate 2117 Infinite Loop
 https://www.tooplate.com/view/2117-infinite-loop
 -->
-
   </head>
+  <link rel="icon" href="img/icon.png">
   <body>    
     <!-- Hero section -->
     <section id="infinite" class="text-white tm-font-big tm-parallax">
@@ -25,59 +33,253 @@ https://www.tooplate.com/view/2117-infinite-loop
         <div class="container">   
           <div class="tm-next">
               <a href="#infinite" class="navbar-brand">RADBIRD</a>
-          </div>             
-            
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars navbar-toggler-icon"></i>
+
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#infinite">Home</a>
+                  <a class="nav-link tm-nav-link" href="#infinite">Hjem</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#whatwedo">What We Do</a>
+                <a class="nav-link tm-nav-link" href="#kart">Kart</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#testimonials">Testimonials</a>
+                <a class="nav-link tm-nav-link" href="#data">Data</a>
+              </li>  
+              <li class="nav-item">
+               <a class="nav-link tm-nav-link" href="#whatwedo">Hva gjør vi?</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#gallery">Gallery</a>
+                <a class="nav-link tm-nav-link" href="#testimonials">Brage</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#contact">Contact</a>
+                  <a class="nav-link tm-nav-link" href="#gallery">Galleri</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#contact">Kontakt oss</a>
               </li>                    
             </ul>
           </div>        
         </div>
       </nav>
-      
+
       <div class="text-center tm-hero-text-container">
         <div class="tm-hero-text-container-inner">
-            <h2 class="tm-hero-title">RADBIRD</h2>
+          <h2 class="tm-hero-title">RADBIRD</h2>
             <p class="tm-hero-subtitle">
-              A Bird Jizz Company
+              Fugledeteksjon og -kartlegging
             </p>
         </div>        
       </div>
-
+      
       <div class="tm-next tm-intro-next">
-        <a href="#whatwedo" class="text-center tm-down-arrow-link">
+        <a href="#kart" class="text-center tm-down-arrow-link">
           <i class="fas fa-2x fa-arrow-down tm-down-arrow"></i>
         </a>
       </div>      
     </section>
 
-    <section id="whatwedo" class="tm-section-pad-top">
+    <section id="kart" class="tm-section-pad-top"> <!--Her skal kartet implemnteres-->
+    <div class="container">
+      <div class="col-lg-12 col-xl-12">
+        <div class="text-center col-12">
+          <h2 class="tm-text-primary tm-section-title mb-4">Kart </h2>
+        </div>
+      <div id="map" style="height: 500px; "></div>
+      <script>
+          // An object containing the position and radius of our nodes
+          var nodeMap = {
+            blitzerman: {
+              center: {lat: 63.421550, lng: 10.12148},
+              diameter: 100,
+              text: '1'
+            },
+            gazerbeam: {
+              center: {lat: 63.42000, lng: 10.11946},
+              diameter: 100,
+              text: '2'
+            },
+            stormicide: {
+              center: {lat: 63.42000, lng: 10.12350},
+              diameter: 100,
+              text: '3'
+            }
+          };
+
+
+
+
+
+          function initMap() {
+            // Create the map
+            var map = new google.maps.Map(document.getElementById('map'), {
+              center: {lat: 63.42092, lng: 10.12167},
+              zoom: 14.5,
+              mapTypeId: 'satellite'
+            });
+    
+            // Construct the circles
+            for (var node in nodeMap) {
+              var nodeCircle = new google.maps.Circle({
+                strokeColor: '#FF0000',
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: '#FF0000',
+                fillOpacity: 0.35,
+                map: map,
+                center: nodeMap[node].center,
+                radius: nodeMap[node].diameter
+              });
+              //var mapLabel = new google.maps.mapLabel({
+              //text: nodeMap[node].text,
+              //position: nodeMap[node].center,
+              //map: map,
+              //fontSize: 35,
+              //align: 'center'
+              //});
+              //mapLabel.set('position', new google.maps.LatLng(nodeMap[node].center));
+
+              //var marker = new google.maps.Marker();
+              //marker.bindTo('map', mapLabel);
+              //marker.bindTo('position', mapLabel);
+            }
+          }
+          // The following script contains an unrestricted API key connected to my PERSONAL google cloud console profile. It will charge me economically if overused. Therefore: Do NOT spread it around - Andreas
+      </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
+      </div>
+    </div>
+  </section>
+
+  <section id="data" class="tm-section-pad-top">
+    <div class="container">
+
+      <div class="row tm-content-box">
+        <div class="col-lg-12 col-xl-12">
+          <div class=tm-intro-text-container">
+            <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
+            <!--
+            <h3>Node 1 </h3>
+            <p class="mb-4 tm-intro-text">
+              <pre id="tid"></pre>
+              <pre id="funker"></pre>
+              <pre id="aktivitet"></pre>
+            </p>
+          -->
+          <div align="right">
+          <button class="btn" onclick="myChart(get_data(4))">Siste uken</button>
+          <button class="btn" onclick="myChart([4,76,90])">Siste måneden</button>
+          <button class="btn"> Siste 6 månedene</button>
+          <button class="btn">Siste året</button>
+          </div>
+          <canvas id="myChart" width="500" height="250"></canvas>
+          <script scr="js/radbird.js">
+            var firebaseConfig = {
+                apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
+                authDomain: "radbird-elsys.firebaseapp.com",
+                databaseURL: "https://radbird-elsys.firebaseio.com",
+                projectId: "radbird-elsys",
+                storageBucket: "radbird-elsys.appspot.com",
+                messagingSenderId: "78896005129",   
+                appId: "1:78896005129:web:9faab86bab14880b3db8d8"
+              };
+              // Initialize Firebase
+              firebase.initializeApp(firebaseConfig);
+
+              var db =firebase.database();
+            
+            var ctx = document.getElementById('myChart');
+function myChart(data_set){ new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Node 1 ', 'Node 2', 'Node 3'],
+        datasets: [{
+            label: 'Antall minutter med fugleaktivitet',
+            data: data_set,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+}
+
+function get_node_data(node,tid){
+var lengde_node= 0;
+var ref =firebase.database().ref(node)
+ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
+ var node_data=snapshot.val();
+ console.log(node_data)
+ for(var key in node_data ){
+   if (key=="aktivitet"){
+     lengde_node=0;
+     break
+   }
+   else{
+     if(node_data.hasOwnProperty(key)){
+         lengde_node++
+     }
+
+    }
+ }
+ })
+ console.log(lengde_node)
+ return lengde_node;
+}
+
+function get_data(tid){
+var data_set=[]
+data_set.push(get_node_data("node1/",tid))
+data_set.push(get_node_data("node2/",tid))
+data_set.push(get_node_data("node3/",tid))
+console.log(data_set)
+return data_set;
+}
+myChart(get_data(4)); 
+myChart(get_data(4));     
+
+          </script>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+      
+  </section>
+    
+      <section id="whatwedo" class="tm-section-pad-top">
       
       <div class="container">
 
             <div class="row tm-content-box"><!-- first row -->
                 <div class="col-lg-12 col-xl-12">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4 tm-section-title">What We Do</h2>
+                        <h2 class="tm-text-primary mb-4 tm-section-title">Hva gjør vi?</h2>
                         <p class="mb-4 tm-intro-text">
-                          This is Infinite Loop, free Bootstrap 4.0 HTML template with a parallax effect. This layout is what you can modify and use for your websites. Please spread a word to your friends about our website. Thank you for supporting us. If you have any question, you can contact us or chat with us on our <a href="https://fb.com/tooplate">Tooplate Facebook page</a>.</p>
+                          Vi er en gruppe studenter som går andre året på ELSYS, vi har fått i oppgave av Trønder Energi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle. Løsningen skal implemnteres ved bruk av radar, der vi ønsker å bruker flere noder for å dekke et tilstreklig stort område.</p>
                     </div>
                 </div>
 
@@ -89,9 +291,9 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Market Analysis</h2>
+                        <h2 class="tm-text-primary mb-4">Statistikk</h2>
                         <p class="mb-4 tm-intro-text">
-                          Praesent sed pharetra lorem, blandit convallis mi. Aenean ornare elit ac metus lacinia, sed iaculis nibh semper. Pellentesque est urna.</p>
+                          Vi lever detaljert statistikk over fugleaktiviteten i området, merket med tidspunkt og lengde på aktivitet.</p>
                     </div>
                 </div>
                 
@@ -100,9 +302,9 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Fast Support</h2>
+                        <h2 class="tm-text-primary mb-4">Brukerstøtte</h2>
                         <p class="mb-4 tm-intro-text">
-                          Credit goes to <a rel="nofollow" href="https://www.pexels.com">Pexels</a> website for all images used in this template. Cras condimentum mi et sapien dignissim luctus.</p>
+                          Hvis du skulle ha noen sprøsmål rundt, hva RadBird kan gjøre for deg ta å <a href="https://radbird-jizz.firebaseapp.com/#contact">kontakt oss.</a></p>
                     </div>
                 </div>
 
@@ -110,16 +312,19 @@ https://www.tooplate.com/view/2117-infinite-loop
             
             <div class="row tm-content-box"><!-- third row -->
         		<div class="col-lg-1">
-                    <i class="fas fa-3x fa-fingerprint text-center tm-icon"></i>
+              <object type="image/svg+xml" data="img/tronder_energi.svg" class="logo">
+                <!-- fallback image in CSS -->
+                
+              </object>
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                        <h2 class="tm-text-primary mb-4">Top Security</h2>
+                        <h2 class="tm-text-primary mb-4">Samarbeidspartner</h2>
                         <p class="mb-4 tm-intro-text">
-                      You have <strong>no</strong> authority to post this template as a ZIP file on your template collection websites. You can <strong>use</strong> this template for your commercial websites.</p>
+                      Vår samarbeidspartner for prosjektet er <a href="https://tronderenergi.no/">Trønder Energi</a>. Testing av produktet vil finne sted på Trønder Energi sitt test anlegg på Rye.</p>
                           
                           <div class="tm-continue">
-                            <a href="#testimonials" class="tm-intro-text tm-btn-primary">Learn More</a>
+                            <a href="dokumenter/problemstiling.pdf" class="tm-intro-text tm-btn-primary">Lær mer</a>
                         </div>
                     </div>
                 </div>
@@ -129,13 +334,14 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 <div class="col-lg-5">
                     <div class="tm-intro-text-container">
-                      <h2 class="tm-text-primary mb-4">Social Work</h2>
+                      <h2 class="tm-text-primary mb-4">På lag med kunden</h2>
                         <p class="mb-4 tm-intro-text">
-                      You can change <a href="https://fontawesome.com/icons?d=gallery">Font Awesome icons</a> by either <b><em>fas or far</em></b> in the HTML codes. For Examples:<br>
-                      <em>&lt;i class=&quot;fas fa-users&quot;&gt;&lt;i class=&quot;far fa-chart-bar&quot;&gt;</em> </p>
+                          For å kunne levere et så komplett produkt som overhode mulig,
+                            samarbeider vi tett med kundene våre. Vårt ønske er at RadBird skal kunne lever en løsning tilpasset dine behov.
+                     </p>
                           
                           <div class="tm-continue">
-                            <a href="#testimonials" class="tm-intro-text tm-btn-primary">Details</a>
+                            <a href="#testimonials" class="tm-intro-text tm-btn-primary">Detaljer</a>
                         </div>
                     </div>
                 </div>
@@ -145,45 +351,45 @@ https://www.tooplate.com/view/2117-infinite-loop
         </div>
       
     </section>
-    
+
     <section id="testimonials" class="tm-section-pad-top tm-parallax-2">      
       <div class="container tm-testimonials-content">
         <div class="row">
           <div class="col-lg-12 tm-content-box">
-            <h2 class="text-white text-center mb-4 tm-section-title">Testimonials</h2>
+            <h2 class="text-white text-center mb-4 tm-section-title">Bilder av Brage</h2>
             <p class="mx-auto tm-section-desc text-center">
-                Nulla dictum sem non eros euismod, eu placerat tortor lobortis. Suspendisse id velit eu libero pellentesque interdum. Etiam quis congue eros.
-              </p>
+              Her er noen bilder av vår venn Brage som du kan nyte mens du venter på vår endelige nettside.
+            </p>
             <div class="mx-auto tm-gallery-container tm-gallery-container-2">
               <div class="tm-testimonials-carousel">
                 <figure class="tm-testimonial-item">
-                  <img src="img/testimonial-img-01.jpg" alt="Image" class="img-fluid mx-auto">
+                  <img src="img/brage.jpg" alt="Image" class="img-fluid mx-auto">
                   <blockquote>This background image includes a semi-transparent overlay layer. This section also has a parallax image effect.</blockquote>
-                  <figcaption>Catherine Win (Designer)</figcaption>
+                  <figcaption>Brage (CEO)</figcaption>
                 </figure>
 
                 <figure class="tm-testimonial-item">
-                  <img src="img/testimonial-img-02.jpg" alt="Image" class="img-fluid mx-auto">
+                  <img src="img/brage.jpg" alt="Image" class="img-fluid mx-auto">
                   <blockquote>Testimonial section comes with carousel items. You can use Infinite Loop HTML CSS template for your websites.</blockquote>
-                  <figcaption>Dual Rocker (CEO)</figcaption>
+                  <figcaption>Brage (Designer)</figcaption>
                 </figure>
 
                 <figure class="tm-testimonial-item">
-                  <img src="img/testimonial-img-03.jpg" alt="Image" class="img-fluid mx-auto">
+                  <img src="img/brage.jpg" alt="Image" class="img-fluid mx-auto">
                   <blockquote>Nulla finibus ligula nec tortor convallis tincidunt. Interdum et malesuada fames ac ante ipsum primis in faucibus.</blockquote>
-                  <figcaption>Sandar Soft (Marketing)</figcaption>
+                  <figcaption>Brage (Web)</figcaption>
                 </figure>
 
                 <figure class="tm-testimonial-item">
-                  <img src="img/testimonial-img-04.jpg" alt="Image" class="img-fluid mx-auto">
+                  <img src="img/brage.jpg" alt="Image" class="img-fluid mx-auto">
                   <blockquote>Curabitur rutrum pharetra lobortis. Pellentesque vehicula, velit quis eleifend fermentum, erat arcu aliquet neque.</blockquote>
-                  <figcaption>Oliva Htoo (Designer)</figcaption>
+                  <figcaption>Brage (Radar)</figcaption>
                 </figure>
 
                 <figure class="tm-testimonial-item">
-                  <img src="img/testimonial-img-02.jpg" alt="Image" class="img-fluid mx-auto">
+                  <img src="img/brage.jpg" alt="Image" class="img-fluid mx-auto">
                   <blockquote>Integer sit amet risus et erat imperdiet finibus. Nam lacus nunc, vulputate id ex eget, euismod auctor augue.</blockquote>
-                  <figcaption>Jacob Joker (CTO)</figcaption>
+                  <figcaption>Brage (CTO)</figcaption>
                 </figure>
               </div>
             </div>
@@ -191,15 +397,15 @@ https://www.tooplate.com/view/2117-infinite-loop
         </div>
       </div>
       <div class="tm-bg-overlay"></div>
-    </section>
     
+        
     <section id="gallery" class="tm-section-pad-top">
       <div class="container tm-container-gallery">
         <div class="row">
           <div class="text-center col-12">
-              <h2 class="tm-text-primary tm-section-title mb-4">Gallery</h2>
+              <h2 class="tm-text-primary tm-section-title mb-4" style="color: white;">Galleri</h2>
               <p class="mx-auto tm-section-desc">
-                Praesent sed pharetra lorem, blandit convallis mi. Aenean ornare elit ac metus lacinia, sed iaculis nibh semper. Pellentesque est urna, lobortis eu arcu a, aliquet tristique urna.
+                Se resien vår fra konsept til ferdig produkt. Her er bilder fra alle deler av utviklingsfasen.
               </p>
           </div>            
         </div>
@@ -286,18 +492,18 @@ https://www.tooplate.com/view/2117-infinite-loop
         <div class="row">
             
             <div class="text-center col-12">
-                <h2 class="tm-section-title mb-4">Contact Us</h2>
+                <h2 class="tm-section-title mb-4">Kontakt oss</h2>
                 <p class="mb-5">
-                  Proin enim orci, tincidunt quis suscipit in, placerat nec est. Vestibulum posuere faucibus posuere. Quisque aliquam velit eget leo blandit egestas. Nulla id posuere felis, quis tristique nulla.
+                  Har du noen spørsmål angående produktet, eller noen du lurer på ta kontakt. 
                 </p><br>
             </div>
             
             <div class="col-sm-12 col-md-6">
-              <form action="" method="get">
+              <form action="" method="get" >
                 <input id="name" name="name" type="text" placeholder="Your Name" class="tm-input" required />
                 <input id="email" name="email" type="email" placeholder="Your Email" class="tm-input" required />
                 <textarea id="message" name="message" rows="8" placeholder="Message" class="tm-input" required></textarea>
-                <button type="submit" class="btn tm-btn-submit">Submit</button>
+                <button type="submit" class="btn tm-btn-submit">Send</button>
               </form>
             </div>
             
@@ -311,16 +517,16 @@ https://www.tooplate.com/view/2117-infinite-loop
                 </div>
                 
                 <div class="contact-item">
-                  <a rel="nofollow" href="mailto:mail@company.com" class="item-link">
+                  <a rel="nofollow" href="mailto:radbird@ntnu.no" class="item-link">
                       <i class="far fa-2x fa-envelope mr-4"></i>
-                      <span class="mb-0">mail@company.com</span>
+                      <span class="mb-0">radbird@ntnu.no</span>
                   </a>              
                 </div>
                 
                 <div class="contact-item">
-                  <a rel="nofollow" href="https://www.google.com/maps" class="item-link">
+                  <a rel="nofollow" href="https://www.google.com/maps/place/NTNU+-+Fakultet+for+informasjonsteknologi+og+elektroteknikk+(IE)/@63.4108392,10.3802181,15.09z/data=!4m8!1m2!2m1!1sel+bygget+ntnu!3m4!1s0x0:0x4268592e6bdb68cc!8m2!3d63.4178574!4d10.4018211" class="item-link">
                       <i class="fas fa-2x fa-map-marker-alt mr-4"></i>
-                      <span class="mb-0">Our Location</span>
+                      <span class="mb-0">Besøk oss</span>
                   </a>              
                 </div>
                 
@@ -342,9 +548,8 @@ https://www.tooplate.com/view/2117-infinite-loop
 
       	<footer class="text-center small tm-footer">
           <p class="mb-0">
-          Copyright &copy; 2020 Company Name 
-          
-          . <a rel="nofollow" href="https://www.tooplate.com" title="HTML templates">Designed by TOOPLATE</a></p>
+          Copyright &copy; 2020 RadBird
+          </p>
         </footer>
 
     </section>

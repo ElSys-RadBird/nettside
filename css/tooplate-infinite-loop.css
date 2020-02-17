@@ -80,7 +80,7 @@ blockquote {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: white;
   transition: all 0.3s ease;
 }
 
@@ -90,7 +90,7 @@ blockquote {
 }
 
 .navbar-brand {
-  color: white;
+  color: #369;
   font-size: 1.4rem;
   font-weight: bold;
 }
@@ -109,7 +109,7 @@ blockquote {
 }
 
 .tm-nav-link {
-  color: white;
+  color: #369;
 }
 
 .tm-navbar.scroll .tm-nav-link {
@@ -146,7 +146,7 @@ blockquote {
 
 #infinite {
 	background-color: #222;
-  background-image: url(../img/infinite-loop-01.jpg);
+  background-image: url(../img/birds.jpg);
   background-repeat: no-repeat;
   height: 100vh;
   min-height: 375px;
@@ -268,7 +268,7 @@ blockquote {
 /* Testimonials */
 #testimonials {
   color: white;
-  background-image: url(../img/infinite-loop-02.jpg);
+  background-image: url(../img/windmill.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -277,7 +277,7 @@ blockquote {
 
 @media (max-width: 991px) {
   #testimonials {
-    background-image: url(../img/infinite-loop-02-mobile.jpg);
+    background-image: url(../img/birds.jpg);
   }
 }
 
@@ -696,4 +696,24 @@ p {
   .tm-gallery-item {
     margin: 0;
   }
+}
+.logo{
+  display: block;
+  text-indent: 0px;
+  position: relative; left: -50px; top:-25px; 
+  width: 150px;
+  height: 150px;
+  background: url(img/tronder_energi.svg);
+  background-size: contain;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+#chart {
+  max-width: 650px;
+  margin: 35px auto;
 }
