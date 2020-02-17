@@ -89,67 +89,8 @@ https://www.tooplate.com/view/2117-infinite-loop
           <h2 class="tm-text-primary tm-section-title mb-4">Kart </h2>
         </div>
       <div id="map" style="height: 500px; "></div>
-      <script>
-          // An object containing the position and radius of our nodes
-          var nodeMap = {
-            blitzerman: {
-              center: {lat: 63.421550, lng: 10.12148},
-              diameter: 100,
-              text: '1'
-            },
-            gazerbeam: {
-              center: {lat: 63.42000, lng: 10.11946},
-              diameter: 100,
-              text: '2'
-            },
-            stormicide: {
-              center: {lat: 63.42000, lng: 10.12350},
-              diameter: 100,
-              text: '3'
-            }
-          };
-
-
-
-
-
-          function initMap() {
-            // Create the map
-            var map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 63.42092, lng: 10.12167},
-              zoom: 14.5,
-              mapTypeId: 'satellite'
-            });
-    
-            // Construct the circles
-            for (var node in nodeMap) {
-              var nodeCircle = new google.maps.Circle({
-                strokeColor: '#FF0000',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#FF0000',
-                fillOpacity: 0.35,
-                map: map,
-                center: nodeMap[node].center,
-                radius: nodeMap[node].diameter
-              });
-              //var mapLabel = new google.maps.mapLabel({
-              //text: nodeMap[node].text,
-              //position: nodeMap[node].center,
-              //map: map,
-              //fontSize: 35,
-              //align: 'center'
-              //});
-              //mapLabel.set('position', new google.maps.LatLng(nodeMap[node].center));
-
-              //var marker = new google.maps.Marker();
-              //marker.bindTo('map', mapLabel);
-              //marker.bindTo('position', mapLabel);
-            }
-          }
-          // The following script contains an unrestricted API key connected to my PERSONAL google cloud console profile. It will charge me economically if overused. Therefore: Do NOT spread it around - Andreas
-      </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
+      <script src="js/Kart.js"></script>       <!--Kartet er her-->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
       </div>
     </div>
   </section>
@@ -169,7 +110,7 @@ https://www.tooplate.com/view/2117-infinite-loop
               <pre id="aktivitet"></pre>
             </p>
           -->
-          <div align="right">
+          <div align="center">
           <button class="btn" onclick="myChart(get_data(4))">Siste uken</button>
           <button class="btn" onclick="myChart([4,76,90])">Siste måneden</button>
           <button class="btn"> Siste 6 månedene</button>
@@ -276,7 +217,8 @@ myChart(get_data(4));
                     <div class="tm-intro-text-container">
                         <h2 class="tm-text-primary mb-4 tm-section-title">Hva gjør vi?</h2>
                         <p class="mb-4 tm-intro-text">
-                          Vi er en gruppe studenter som går andre året på ELSYS, vi har fått i oppgave av Trønder Energi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle. Løsningen skal implemnteres ved bruk av radar, der vi ønsker å bruker flere noder for å dekke et tilstreklig stort område.</p>
+                          Vi er en gruppe studenter som går andre året på ELSYS, som har fått i oppgave av Trønder Energi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle. 
+                          Løsningen skal implemnteres ved bruk av radar, der vi ønsker å bruker flere noder for å dekke et tilstreklig stort område.</p>
                     </div>
                 </div>
 
