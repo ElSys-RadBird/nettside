@@ -2,17 +2,17 @@
 var nodeMap = {
     blitzerman: {
       center: {lat: 63.421550, lng: 10.12148},
-      diameter: 100,
+      radius: 100,
       text: '1'
     },
     gazerbeam: {
       center: {lat: 63.42000, lng: 10.11946},
-      diameter: 100,
+      radius: 100,
       text: '2'
     },
     stormicide: {
       center: {lat: 63.42000, lng: 10.12350},
-      diameter: 100,
+      radius: 100,
       text: '3'
     }
   };
@@ -39,20 +39,20 @@ var nodeMap = {
         fillOpacity: 0.35,
         map: map,
         center: nodeMap[node].center,
-        radius: nodeMap[node].diameter
+        radius: nodeMap[node].radius,
+        // var mapLabel = new google.maps.mapLabel({
+        // text: nodeMap[node].text,
+        // position: nodeMap[node].center,
+        // map: map,
+        // fontSize: 35,
+        // align: 'center'
+        // });
+        // mapLabel.set('position', new google.maps.LatLng(nodeMap[node].center));
+  
+        // var marker = new google.maps.Marker();
+        // marker.bindTo('map', mapLabel);
+        // marker.bindTo('position', mapLabel);
       });
-      //var mapLabel = new google.maps.mapLabel({
-      //text: nodeMap[node].text,
-      //position: nodeMap[node].center,
-      //map: map,
-      //fontSize: 35,
-      //align: 'center'
-      //});
-      //mapLabel.set('position', new google.maps.LatLng(nodeMap[node].center));
-
-      //var marker = new google.maps.Marker();
-      //marker.bindTo('map', mapLabel);
-      //marker.bindTo('position', mapLabel);
     }
   }
   // The following script contains an unrestricted API key connected to my PERSONAL google cloud console profile. 
