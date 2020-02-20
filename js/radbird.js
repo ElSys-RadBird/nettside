@@ -15,43 +15,43 @@ firebase.initializeApp(firebaseConfig);
 var db =firebase.database();
 
 // Henter nodedata
-function get_node_data(node,tid){
-  var lengde_node= 0;
-  var ref =firebase.database().ref(node)
-  ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
-    var node_data=snapshot.val();
-    console.log(node_data)
-    for(var key in node_data ){
-      if (key=="aktivitet"){
-        lengde_node=0;
-        break
-      }
-      else{
-        if(node_data.hasOwnProperty(key)){
-          lengde_node++ 
-        }
-      }
-    }
-  })
-  console.log(lengde_node);
-  return lengde_node;
-}
+// function get_node_data(node,tid){
+//   var lengde_node= 0;
+//   var ref =firebase.database().ref(node)
+//   ref.orderByChild('tid').endAt(tid).on('value',function(snapshot){
+//     var node_data=snapshot.val();
+//     console.log(node_data)
+//     for(var key in node_data ){
+//       if (key=="aktivitet"){
+//         lengde_node=0;
+//         break
+//       }
+//       else{
+//         if(node_data.hasOwnProperty(key)){
+//           lengde_node++
+//         }
+//       }
+//     }
+//   })
+//   console.log(lengde_node);
+//   return lengde_node;
+// }
 
 // Henter data og lager et datasett (?)
-function get_data(tid){
-  var data_set=[]
-  data_set.push(get_node_data("node1/",tid))
-  data_set.push(get_node_data("node2/",tid))
-  data_set.push(get_node_data("node3/",tid))
-  console.log(data_set)
-  return data_set;
-}
+// function get_data(tid){
+//   var data_set=[];
+//   data_set.push(get_node_data("node1/",tid));
+//   data_set.push(get_node_data("node2/",tid));
+//   data_set.push(get_node_data("node3/",tid));
+//   console.log(data_set);
+//   return data_set;
+// }
 
 // Lager grafen
 
-function myChart(data_set){ 
+function makeChart(data_set){
   var ctx = document.getElementById('myChart');
-  new Chart(ctx, {
+  var birdChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['Node 1 ', 'Node 2', 'Node 3'],
@@ -83,5 +83,33 @@ function myChart(data_set){
   });
 }
 
+// function NEW_makeChart(data_set){
+//   var ctx = document.getElementById('myChart');
+//   var birdChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: ['Node 1 ', 'Node 2', 'Node 3'],
+//       data: data_set
+//     },
+//     options: {
+//       scales: {
+//         yAxes: [{
+//           ticks: {
+//             beginAtZero: true
+//           }
+//         }]
+//       }
+//     }
+//   });
+//   return birdChart;
+// }
 
-myChart(0);
+
+function updateChart(chart, ds) {
+  if(typeof chart != "undefined") {
+    chart.destroy();
+  }
+  return NEW_makeChart(ds);
+}
+
+birdChart = updateChart(0);
