@@ -47,17 +47,21 @@ var db =firebase.database();
 //   return data_set;
 // }
 
-// Lager grafen
 
-function makeChart(data_set){
-  var ctx = document.getElementById('myChart');
-  var birdChart = new Chart(ctx, {
+let data_set_uke = [1, 0, 1];
+let data_set_mnd = [3, 2, 4];
+let data_set_6mnd = [4, 4, 10];
+let data_set_aar = [12, 15, 17];
+
+function makeChart(ds) {
+  let ctx = document.getElementById('myChart');
+  let birdChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: ['Node 1 ', 'Node 2', 'Node 3'],
       datasets: [{
         label: 'Antall ganger observert fugler',
-        data: data_set,
+        data: ds,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -81,35 +85,35 @@ function makeChart(data_set){
       }
     }
   });
+  return birdChart;
 }
 
-// function NEW_makeChart(data_set){
-//   var ctx = document.getElementById('myChart');
-//   var birdChart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//       labels: ['Node 1 ', 'Node 2', 'Node 3'],
-//       data: data_set
-//     },
-//     options: {
-//       scales: {
-//         yAxes: [{
-//           ticks: {
-//             beginAtZero: true
-//           }
-//         }]
-//       }
-//     }
-//   });
-//   return birdChart;
-// }
+
+let btn_uke = document.getElementById("btn-uke");
+let btn_mnd = document.getElementById("btn-mnd");
+let btn_6mnd = document.getElementById("btn-6mnd");
+let btn_aar = document.getElementById("btn-aar");
 
 
-function updateChart(chart, ds) {
-  if(typeof chart != "undefined") {
-    chart.destroy();
-  }
-  return NEW_makeChart(ds);
-}
+btn_uke.addEventListener("click", function(){
+  birdChart.destroy();
+  birdChart = makeChart(data_set_uke);
+});
 
-birdChart = updateChart(0);
+btn_mnd.addEventListener("click", function(){
+  birdChart.destroy();
+  birdChart = makeChart(data_set_mnd);
+});
+
+btn_6mnd.addEventListener("click", function(){
+  birdChart.destroy();
+  birdChart = makeChart(data_set_6mnd);
+});
+
+btn_aar.addEventListener("click", function(){
+  birdChart.destroy();
+  birdChart = makeChart(data_set_aar);
+});
+
+
+let birdChart = makeChart(0);

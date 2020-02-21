@@ -19,7 +19,6 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="js/radbird.js"></script>           <!--Grafen er her-->
     <link rel="icon" href="img/icon.png">
   </head>
 
@@ -109,12 +108,13 @@
             </p>
           -->
           <div align="center">
-          <button class="btn" onclick="updateChart(birdChart, [1, 2, 3])">Siste uken</button>
-          <button class="btn" onclick="updateChart(birdChart, [2, 1, 0])">Siste måneden</button>
-          <button class="btn" onclick="updateChart(birdChart, [6, 12, 24])">Siste 6 månedene</button>
-          <button class="btn">Siste året</button>
+          <input type="submit" class="btn-uke" id="btn-uke" value="Siste uken" />
+          <input type="submit" class="btn-mnd" id="btn-mnd" value="Siste måneden" />
+          <input type="submit" class="btn-6mnd" id="btn-6mnd" value="Siste 6 månedene" />
+          <input type="submit" class="btn-aar" id="btn-aar" value="Siste året" />
           </div>
           <canvas id="myChart" width="500" height="250"></canvas>
+          <script src="js/radbird.js"></script>           <!--Grafen er her-->
           </div>
         </div>
       </div>
