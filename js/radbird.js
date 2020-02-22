@@ -63,14 +63,14 @@ function makeChart(ds) {
         label: 'Antall ganger observert fugler',
         data: ds,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)'
+          'rgba(33, 77, 170, 0.15)',
+          'rgba(33, 77, 170, 0.15)',
+          'rgba(33, 77, 170, 0.15)',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)'
+          'rgba(33, 77, 170, 1)',
+          'rgba(33, 77, 170, 1)',
+          'rgba(33, 77, 170, 1)',
         ],
         borderWidth: 1
       }]
