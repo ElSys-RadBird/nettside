@@ -15,6 +15,10 @@
     padding: 1%;
 }
 
+.add_lat {
+    justify-self: left;
+}
+
 .remove-node {
     text-align: left;
     flex-basis: 40%;
@@ -25,4 +29,26 @@
 .node-oversikt {
     text-align: left;
     margin: 80px;
+}
+
+.input-box {
+    align-self: right;
+}
+
+#map {
+    border: 2px solid #3377AA;
+}
+
+.bord {
+    border: 2px solid #3377AA;
+    margin: 2%;
+    padding: 2%;
+}
+
+.btn {
+    border-color: lightgray;
+}
+
+::placeholder {
+    color: gray;
 }

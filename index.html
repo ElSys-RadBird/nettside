@@ -99,26 +99,15 @@
   <section id="data" class="tm-section-pad-top">
     <div class="container">
       <div class="row tm-content-box">
-        <div class="col-lg-12 col-xl-12">
-          <div class=tm-intro-text-container>
-            <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
-            <!--
-            <h3>Node 1 </h3>
-            <p class="mb-4 tm-intro-text">
-              <pre id="timestamp1"></pre>
-              <pre id="funker"></pre>
-              <pre id="aktivitet"></pre>
-            </p>
-          -->
-          <!-- <div class="buttons"> -->
-          <input type="submit" class="btn-uke" id="btn-uke" value="Siste uken" />
-          <input type="submit" class="btn-mnd" id="btn-mnd" value="Siste måneden" />
-          <input type="submit" class="btn-6mnd" id="btn-6mnd" value="Siste 6 månedene" />
-          <input type="submit" class="btn-aar" id="btn-aar" value="Siste året" />
-          </div>
-          </div>
-          <canvas id="myChart" width="500" height="200"></canvas>
-          <script src="js/radbird.js"></script>           <!--Grafen er her-->
+        <div class="col-lg-12 col-xl-12 tm-intro-text-container">
+          <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
+          <input type="submit" class="btn btn-uke" id="btn-uke" value="Siste uken" />
+          <input type="submit" class="btn btn-mnd" id="btn-mnd" value="Siste måneden" />
+          <input type="submit" class="btn btn-6mnd" id="btn-6mnd" value="Siste halvåret" />
+          <input type="submit" class="btn btn-aar" id="btn-aar" value="Siste året" />
+          <div class="bord">
+            <canvas id="myChart" width="500" height="200"></canvas>
+            <script src="js/radbird.js"></script>           <!--Grafen er her-->
           </div>
         </div>
       </div>
@@ -137,14 +126,19 @@
                 <form action="" method="get" class="form-example">
                   <div class="node-form">
                     <label for="name">Navn på node: </label>
-                    <input type="text" name="name" id="name" required>
+                    <input type="text" name="name" id="name" placeholder="F.eks. Brage" required>
+                    <div class="add_lat">
+                      <label for="lat">Breddegrad: </label>
+                      <input type="number" step="0.0001" name="lat" id="lat" placeholder="F.eks. 63.42000">
+                    </div>
+                    <div class="add_long">
+                      <label for="long">Breddegrad: </label>
+                      <input type="number" step="0.0001" name="long" id="long" placeholder="F.eks. 10.12350">
+                    </div>
                   </div>
-                  <!-- <div class="form-example">
-                    <label for="email">: </label>
-                    <input type="email" name="email" id="email" required>
-                  </div> -->
                   <div class="node-form">
-                    <input type="submit" value="Legg til">
+                    <input type="submit" id="legg_til_btn" value="Legg til">
+                    <script src="js/add-remove-node.js"></script>
                   </div>
                 </form>
               </div>
@@ -153,7 +147,7 @@
                 <form action="" method="get" class="form-example">
                   <div class="node-form">
                     <label for="name">Nodenummer: </label>
-                    <input type="number" name="name" id="name" placeholder="123-45-678" required>
+                    <input type="number" name="name" id="name" placeholder="F.eks. 1, 2, 3, ..." required>
                   </div>
                   <!-- <div class="form-example">
                     <label for="email">: </label>
@@ -167,7 +161,8 @@
             </section>
             <section class="node-oversikt">
               <h2 class="node-oversikt-header">Nodeoversikt</h2>
-              
+              <p id="n-o"></p>
+              <script src="js/list_nodes.js"></script>
             </section>
           </div>
         </div>

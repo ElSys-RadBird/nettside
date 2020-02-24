@@ -62,6 +62,7 @@ function makeChart(ds) {
       datasets: [{
         label: 'Antall ganger observert fugler',
         data: ds,
+        barPercentage: 0.4,
         backgroundColor: [
           'rgba(33, 77, 170, 0.15)',
           'rgba(33, 77, 170, 0.15)',
