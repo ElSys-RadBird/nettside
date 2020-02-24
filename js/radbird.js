@@ -13,13 +13,15 @@ firebase.initializeApp(firebaseConfig);
 var db =firebase.database();
 
 var ctx = document.getElementById('myChart');
-function myChart(data_set){ new Chart(ctx, {
+
+async function myChart(data_set){var data_chart= await data_set; new Chart(ctx, {
+  
   type: 'bar',
   data: {
   labels: ['Node 1 ', 'Node 2', 'Node 3'],
   datasets: [{
   label: 'Antall minutter med fugleaktivitet',
-  data: data_set,
+  data: data_chart,
   backgroundColor: [
     'rgba(255, 99, 132, 0.2)',
     'rgba(54, 162, 235, 0.2)',
