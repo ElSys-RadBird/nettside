@@ -26,6 +26,7 @@ function initMap() {
     mapTypeId: 'satellite'
   });
 
+  
   // Construct the circles
   for (let node in nodeMap) {
     new google.maps.Circle({
