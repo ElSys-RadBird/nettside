@@ -1,0 +1,18 @@
+Noder
+
+Legg til node
+	- navn
+	- (plassering)
+
+Fjern node
+	- nummer / navn
+
+Se status på noder
+	- "Fungerer"
+	- Oppetid?
+
+
+KART:
+
+Endre farge avhengig av status på "fungerer"
+
