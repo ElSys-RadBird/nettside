@@ -1,19 +1,19 @@
 // An object containing the position and radius of our nodes
 var nodeMap = {
     blitzerman: {
+      nodenumber: 1,
       center: {lat: 63.421550, lng: 10.12148},
-      radius: 100,
-      text: '1'
+      radius: 100
     },
     gazerbeam: {
+      nodenumber: 2,
       center: {lat: 63.42000, lng: 10.11946},
-      radius: 100,
-      text: '2'
+      radius: 100
     },
     stormicide: {
+      nodenumber: 3,
       center: {lat: 63.42000, lng: 10.12350},
       radius: 100,
-      text: '3'
     }
   };
 
