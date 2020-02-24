@@ -46,7 +46,7 @@ async function get_data(tid){
 
 
 async function makeChart(ds) {
-  data_chart= await ds;
+  let data_chart= await ds;
   let ctx = document.getElementById('myChart');
   let birdChart = new Chart(ctx, {
     type: 'bar',
