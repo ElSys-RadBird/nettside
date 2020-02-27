@@ -19,6 +19,14 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <link href="datepicker/dist/css/datepicker.min.css" rel="stylesheet" />
+    <!-- For Bootstrap 4 -->
+    <link href="datepicker/dist/css/datepicker-bs4.min.css" rel="stylesheet" />
+    <!-- For Bulma -->
+    <link href="datepicker/dist/css/datepicker-bulma.min.css" rel="stylesheet" />
+    <script src="datepicker/dist/js/datepicker-full.min.js"></script>
+    <script src="datepicker/dist/js/locales/no.js" charset="UTF-8"></script>
+
     <!--
 Tooplate 2117 Infinite Loop
 https://www.tooplate.com/view/2117-infinite-loop
@@ -170,10 +178,23 @@ https://www.tooplate.com/view/2117-infinite-loop
             </p>
           -->
           <div align="right">
+          <!--  
           <button class="btn" onclick="myChart(get_data(604800))">Siste uken</button>
-          <button class="btn"onclick="myChart(get_data(2629743))">Siste måneden</button>
-          <button class="btn"onclick="myChart(get_data(15778463))"> Siste 6 månedene</button>
-          <button class="btn"onclick="myChart(get_data(31556926))">Siste året</button>
+          <button class="btn"onclick="myChart(get_data(2629743)); ctx.destroy();">Siste måneden</button>
+          <button class="btn"onclick="myChart(get_data(15778463));ctx.destroy();"> Siste 6 månedene</button>
+          <button class="btn"onclick="myChart(get_data(31556926));ctx.destroy();">Siste året</button>
+          <input type="text" id="start_date">
+          <input type="text" id="end_date">
+          -->
+          <input type="submit" class="btn btn-uke" id="btn-uke" value="Siste uken" />
+          <input type="submit" class="btn btn-mnd" id="btn-mnd" value="Siste måneden" />
+          <input type="submit" class="btn btn-6mnd" id="btn-6mnd" value="Siste halvåret" />
+          <input type="submit" class="btn btn-aar" id="btn-aar" value="Siste året" />
+          <div id="range">
+            <input type="text" name="start">
+            <span>To</span>
+            <input type="text" name="end">
+          </div>
           </div>
           <canvas id="myChart" width="500" height="250"></canvas>
           <script src="js/radbird.js"></script>
@@ -237,7 +258,7 @@ https://www.tooplate.com/view/2117-infinite-loop
                     <div class="tm-intro-text-container">
                         <h2 class="tm-text-primary mb-4">Samarbeidspartner</h2>
                         <p class="mb-4 tm-intro-text">
-                      Vår samarbeidspartner for prosjektet er <a href="https://tronderenergi.no/">Trønder Energi</a>. Testing av produktet vil finne sted på Trønder Energi sitt test anlegg på Rye.</p>
+                      Vår samarbeidspartner for prosjektet er <a href="https://tronderenergi.no/">TrønderEnergi</a>. Testing av produktet vil finne sted på Trønder Energi sitt test anlegg på Rye.</p>
                           
                           <div class="tm-continue">
                             <a href="dokumenter/problemstiling.pdf" class="tm-intro-text tm-btn-primary">Lær mer</a>
@@ -415,10 +436,12 @@ https://www.tooplate.com/view/2117-infinite-loop
             </div>
             
             <div class="col-sm-12 col-md-6">
-              <form action="" method="get" >
-                <input id="name" name="name" type="text" placeholder="Your Name" class="tm-input" required />
-                <input id="email" name="email" type="email" placeholder="Your Email" class="tm-input" required />
-                <textarea id="message" name="message" rows="8" placeholder="Message" class="tm-input" required></textarea>
+              <form action="https://formspree.io/xgeyogaw" method="POST">
+                <input id="name" name="name" type="text" placeholder="Ditt navn" class="tm-input" required />
+                <input id="email" name="email" type="email" placeholder="Din epost" class="tm-input" required />
+                <textarea id="message" name="message" rows="8" placeholder="Melding" class="tm-input" required></textarea>
+                <input type="hidden" name="_submit" value="https://radbird-elsys.firebaseapp.com/"/>
+                <input type="hidden" name="_language" value="no" />
                 <button type="submit" class="btn tm-btn-submit">Send</button>
               </form>
             </div>
