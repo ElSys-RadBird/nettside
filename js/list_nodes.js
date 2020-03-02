@@ -1,3 +1,5 @@
+// Kode for visning av noder
+
 // function list_nodes(obj) {
 //   let i = 1;
 //   for (const node in obj) {
@@ -23,7 +25,7 @@
 //   };
 //   // Initialize Firebase
 //   firebase.initializeApp(firebaseConfig);
-  
+
 //   // Lager en databasevariabel
 //   var db = firebase.database();
 

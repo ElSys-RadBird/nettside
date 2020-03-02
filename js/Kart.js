@@ -1,43 +1,69 @@
-// An object containing the position and radius of our nodes
-var nodeMap = {
-    blitzerman: {
-      nodenumber: 1,
-      center: {lat: 63.421550, lng: 10.12148},
-      radius: 100
-    },
-    gazerbeam: {
-      nodenumber: 2,
-      center: {lat: 63.42000, lng: 10.11946},
-      radius: 100
-    },
-    stormicide: {
-      nodenumber: 3,
-      center: {lat: 63.42000, lng: 10.12350},
-      radius: 100,
-    }
-  };
+// Kode for kart
+
+var firebaseConfig = {
+  apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
+  authDomain: "radbird-elsys.firebaseapp.com",
+  databaseURL: "https://radbird-elsys.firebaseio.com",
+  projectId: "radbird-elsys",
+  storageBucket: "radbird-elsys.appspot.com",
+  messagingSenderId: "78896005129",   
+  appId: "1:78896005129:web:9faab86bab14880b3db8d8",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+let db = firebase.database();
 
 
 function initMap() {
   // Create the map
   let map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 63.42092, lng: 10.12167},
-    zoom: 14.5,
+    zoom: 14,
     mapTypeId: 'satellite'
   });
 
-  
-  // Construct the circles
-  for (let node in nodeMap) {
-    new google.maps.Circle({
-    strokeColor: '#FF0000',
-    strokeOpacity: 0.8,
-    strokeWeight: 2,
-    fillColor: '#FF0000',
-    fillOpacity: 0.35,
-    map: map,
-    center: nodeMap[node].center,
-    radius: nodeMap[node].radius,
-    });
-  }
+  let ref = firebase.database().ref();
+  ref.on('value', function(snapshot){
+    let nodes = snapshot.val();
+    let newNodes = Object.values(nodes);
+    for (let node of newNodes) {
+      if (typeof(node) === 'object') {
+        if (node.funker === true) {
+          new google.maps.Circle({
+            strokeColor: '#3377AA',
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            fillOpacity: 0.35,
+            map: map,
+            center: node.position.center,
+            radius: 100,   
+            fillColor: '#00FF00'       
+          });
+        }
+        else if (node.funker === false) { 
+          new google.maps.Circle({
+            strokeColor: '#3377AA',
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            fillOpacity: 0.35,
+            map: map,
+            center: node.position.center,
+            radius: 100,   
+            fillColor: '#FF0000'       
+          });
+        }
+        // let name = 1;
+        // let marker = new google.maps.Marker({
+        //   position: node.center,
+        //   icon: {
+        //     path: google.maps.SymbolPath.name,
+        //     scale: 10
+        //   },
+        //   draggable: false,
+        //   map: map
+        // });
+      }
+    }
+  })
 }

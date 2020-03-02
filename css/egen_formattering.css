@@ -28,6 +28,7 @@
 
 .node-oversikt {
     text-align: left;
+    /* align-self: baseline; */
     margin: 80px;
 }
 
