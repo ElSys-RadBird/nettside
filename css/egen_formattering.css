@@ -4,7 +4,6 @@
 
 .node-add-and-remove {
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-around;
     text-align: left;
     align-items: stretch;
@@ -12,18 +11,13 @@
 
 
 .remove-node {
-    /* text-align: left; */
     flex-basis: 40%;
-    border: 2px solid #3377AA;
     padding: 1%;
 }
 
 
 .node-oversikt {
-    /* text-align: left; */
-    /* margin: 80px; */
     flex-basis: 40%;
-    border: 2px solid #3377AA;
     padding: 1%;
 }
 
