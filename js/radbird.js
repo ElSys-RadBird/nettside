@@ -3,35 +3,35 @@
 // La funksjonen getData gjelde uavhengig av antall noder
 
 async function getNodeData(node, tid){
-  let lengde_node = 0;
+  let lengdeNode = 0;
   return new Promise (resolve => {
     let ref = firebase.database().ref(node);
     ref.orderByChild('tid').startAt(tid).on('value', function(snapshot){
-      let node_data = snapshot.val();
-      for (key in node_data) {
-          if (node_data.hasOwnProperty(key)){
-              lengde_node++;
+      let nodeData = snapshot.val();
+      for (key in nodeData) {
+          if (nodeData.hasOwnProperty(key)){
+              lengdeNode++;
           }
       }
-      resolve(lengde_node);
+      resolve(lengdeNode);
     })
   });
 }
 
 
 async function getData(tid){
-  var un_time = new Date();
-  var data_set = [];
-  var sec = Math.round(un_time.getTime() / 1000);
-  data_set.push(await getNodeData("node1/birdEvents", sec - tid));
-  data_set.push(await getNodeData("node2/birdEvents", sec - tid));
-  data_set.push(await getNodeData("node3/birdEvents", sec - tid));
-  return data_set;
+  let unTime = new Date();
+  let dataSet = [];
+  let sec = Math.round(unTime.getTime() / 1000);
+  dataSet.push(await getNodeData("node1/birdEvents", sec - tid));
+  dataSet.push(await getNodeData("node2/birdEvents", sec - tid));
+  dataSet.push(await getNodeData("node3/birdEvents", sec - tid));
+  return dataSet;
 }
 
 
 async function makeChart(ds) {
-  let data_chart= await ds;
+  let dataChart= await ds;
   let ctx = document.getElementById('myChart');
   let birdChart = new Chart(ctx, {
     type: 'bar',
@@ -39,7 +39,7 @@ async function makeChart(ds) {
       labels: ['Node 1 ', 'Node 2', 'Node 3'],
       datasets: [{
         label: 'Antall ganger observert fugler',
-        data: data_chart,
+        data: dataChart,
         barPercentage: 0.4,
         backgroundColor: [
           'rgba(33, 77, 170, 0.15)',
@@ -73,26 +73,26 @@ let btnMnd = document.getElementById("btn-mnd");
 let btn6mnd = document.getElementById("btn-6mnd");
 
 btnDay.addEventListener("click", async function(){
-  let birdChart_temp = await birdChart;
-  birdChart_temp.destroy();
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
   birdChart = makeChart(getData(86400));
 });
 
 btnUke.addEventListener("click", async function(){
-  let birdChart_temp = await birdChart;
-  birdChart_temp.destroy();
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
   birdChart = makeChart(getData(604800));
 });
 
 btnMnd.addEventListener("click", async function(){
-  let birdChart_temp = await birdChart;
-  birdChart_temp.destroy();
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
   birdChart = makeChart(getData(2592000));
 });
   
 btn6mnd.addEventListener("click", async function(){
-  let birdChart_temp = await birdChart;
-  birdChart_temp.destroy();
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
   birdChart = makeChart(getData(15768000));
 });
     
