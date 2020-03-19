@@ -20,7 +20,7 @@
     <script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="js/firebase_initializing.js"></script>
+    <!-- <script src="js/firebase_initializing.js"></script> -->
     <link rel="icon" href="img/icon.png">
   </head>
 
@@ -54,12 +54,12 @@
               <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#noder">Noder</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#testimonials">Brage</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link tm-nav-link" href="#gallery">Galleri</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                   <a class="nav-link tm-nav-link" href="#contact">Kontakt oss</a>
               </li>
@@ -207,11 +207,11 @@
                 <script src="js/list_nodes.js"></script>
               </section>
             <div class="remove-node">
-                <h3 class="remove-node-header">Fjern node:</h3>
+                <h3 class="remove-node-header">Fjern / nullstill node:</h3>
                 <form action="" method="get" class="form-example">
                   <div class="node-form">
                     <label for="name">Nodenummer: </label>
-                    <input type="number" name="name" id="name" placeholder="F.eks. 1, 2, 3, ..." required>
+                    <input type="number" name="name" id="name" required>
                   </div>
                   <div class="node-form">
                     <input type="submit" value="Fjern">
@@ -225,7 +225,7 @@
     </div>
     </section>
 
-    <section id="testimonials" class="tm-section-pad-top tm-parallax-2">
+    <!-- <section id="testimonials" class="tm-section-pad-top tm-parallax-2">
       <div class="container tm-testimonials-content">
         <div class="row">
           <div class="col-lg-12 tm-content-box">
@@ -355,7 +355,7 @@
             </div>
           </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Contact -->
     <section id="contact" class="tm-section-pad-top tm-parallax-2">
@@ -372,10 +372,12 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
-              <form action="" method="get" >
-                <input id="name" name="name" type="text" placeholder="Your Name" class="tm-input" required />
-                <input id="email" name="email" type="email" placeholder="Your Email" class="tm-input" required />
-                <textarea id="message" name="message" rows="8" placeholder="Message" class="tm-input" required></textarea>
+              <form action="https://formspree.io/xgeyogaw" method="POST">
+                <input id="name" name="name" type="text" placeholder="Ditt navn" class="tm-input" required />
+                <input id="email" name="email" type="email" placeholder="Din epost" class="tm-input" required />
+                <textarea id="message" name="message" rows="8" placeholder="Melding" class="tm-input" required></textarea>
+                <input type="hidden" name="_submit" value="https://radbird-elsys.firebaseapp.com/"/>
+                <input type="hidden" name="_language" value="no" />
                 <button type="submit" class="btn tm-btn-submit">Send</button>
               </form>
             </div>
@@ -476,32 +478,32 @@
         }
       };
 
-      var background_image_parallax_2 = function($object, multiplier){
-        multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
-        multiplier = 1 - multiplier;
-        var $doc = $(document);
-        $object.css({"background-attachment" : "fixed"});
+      // var background_image_parallax_2 = function($object, multiplier){
+      //   multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+      //   multiplier = 1 - multiplier;
+      //   var $doc = $(document);
+      //   $object.css({"background-attachment" : "fixed"});
 
-        $(window).scroll(function(){
-          if($(window).width() > 768) {
-            var firstTop = $object.offset().top,
-                pos = $(window).scrollTop(),
-                yPos = Math.round((multiplier * (firstTop - pos)) - 186);
+      //   $(window).scroll(function(){
+      //     if($(window).width() > 768) {
+      //       var firstTop = $object.offset().top,
+      //           pos = $(window).scrollTop(),
+      //           yPos = Math.round((multiplier * (firstTop - pos)) - 186);
 
-            var bg_css = 'center ' + yPos + 'px';
+      //       var bg_css = 'center ' + yPos + 'px';
 
-            $object.css({"background-position" : bg_css });
-          } else {
-            $object.css({"background-position" : "center" });
-          }
-        });
-      };
+      //       $object.css({"background-position" : bg_css });
+      //     } else {
+      //       $object.css({"background-position" : "center" });
+      //     }
+      //   });
+      // };
 
       $(function(){
         // Hero Section - Background Parallax
         background_image_parallax($(".tm-parallax"), 0.30, false);
-        background_image_parallax_2($("#contact"), 0.80);
-        background_image_parallax_2($("#testimonials"), 0.80);
+        // background_image_parallax_2($("#contact"), 0.80);
+        // background_image_parallax_2($("#testimonials"), 0.80);
 
         // Handle window resize
         window.addEventListener('resize', function(){

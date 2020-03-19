@@ -4,32 +4,27 @@
 
 .node-add-and-remove {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-around;
-}
-
-.add-node {
     text-align: left;
-    flex-basis: 40%;
-    border: 2px solid #3377AA;
-    padding: 1%;
+    align-items: stretch;
 }
 
-.add_lat {
-    justify-self: left;
-}
 
 .remove-node {
-    text-align: left;
+    /* text-align: left; */
     flex-basis: 40%;
     border: 2px solid #3377AA;
     padding: 1%;
 }
 
+
 .node-oversikt {
-    text-align: left;
-    /* align-self: baseline; */
-    margin: 80px;
+    /* text-align: left; */
+    /* margin: 80px; */
+    flex-basis: 40%;
+    border: 2px solid #3377AA;
+    padding: 1%;
 }
 
 .input-box {
@@ -53,7 +48,3 @@
 ::placeholder {
     color: gray;
 }
-
-/* .add_lat>#lat {
-    align-self: right;
-} */
