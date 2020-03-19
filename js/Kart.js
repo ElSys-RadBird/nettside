@@ -1,6 +1,6 @@
 // Kode for kart
 
-let firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
   authDomain: "radbird-elsys.firebaseapp.com",
   databaseURL: "https://radbird-elsys.firebaseio.com",
@@ -13,7 +13,6 @@ let firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let db = firebase.database();
-let ref = db.ref();
 
 
 function initMap() {
@@ -24,12 +23,12 @@ function initMap() {
     mapTypeId: 'satellite'
   });
 
-  ref.once('value', function(snapshot){
+  let ref = firebase.database().ref();
+  ref.on('value', function(snapshot){
     let nodes = snapshot.val();
-    let nodeArray = Object.values(nodes);
-    for (let node of nodeArray) {
+    let newNodes = Object.values(nodes);
+    for (let node of newNodes) {
       if (typeof(node) === 'object') {
-        
         if (node.funker === true) {
           new google.maps.Circle({
             strokeColor: '#3377AA',
@@ -54,6 +53,16 @@ function initMap() {
             fillColor: '#FF0000'       
           });
         }
+        // let name = 1;
+        // let marker = new google.maps.Marker({
+        //   position: node.center,
+        //   icon: {
+        //     path: google.maps.SymbolPath.name,
+        //     scale: 10
+        //   },
+        //   draggable: false,
+        //   map: map
+        // });
       }
     }
   })

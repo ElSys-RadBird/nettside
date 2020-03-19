@@ -28,9 +28,8 @@
 
 .node-oversikt {
     text-align: left;
-    flex-basis: 40%;
-    border: 2px solid #3377AA;
-    padding: 1%;
+    /* align-self: baseline; */
+    margin: 80px;
 }
 
 .input-box {
@@ -53,10 +52,6 @@
 
 ::placeholder {
     color: gray;
-}
-
-.bold-font {
-    font-weight: bold;
 }
 
 /* .add_lat>#lat {
