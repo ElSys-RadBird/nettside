@@ -129,14 +129,9 @@
               </section>
             <div class="remove-node bord">
                 <h3 class="remove-node-header">Fjern / nullstill node:</h3>
-                <form action="" method="get" class="form-example">
-                  <div class="node-form">
-                    <label for="name">Nodenummer: </label>
-                    <input type="number" name="name" id="name" required>
-                  </div>
-                  <div class="node-form">
-                    <input type="submit" id="remove_node_btn" value="Fjern"> 
-                  </div>
+                <form id="frm1" action="/action_page.php">
+                  Nodenummer: <input type="number" name="nodenr"><br>
+                  <input type="button" onclick="removeNode(nodenr)" value="Fjern / nullstill">
                 </form>
               </div>
             </section>

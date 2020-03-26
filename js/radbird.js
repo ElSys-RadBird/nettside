@@ -1,7 +1,6 @@
 // Kode for graf
-// TODO:
-// La funksjonen getData gjelde uavhengig av antall noder
 
+// Henter dataen fra en node.
 async function getNodeData(node, tid){
   let lengdeNode = 0;
   return new Promise (resolve => {
@@ -18,29 +17,48 @@ async function getNodeData(node, tid){
   });
 }
 
-
+// Henter dataen fra alle nodene.
 async function getData(tid){
   let unTime = new Date();
-  let dataSet = [];
   let sec = Math.round(unTime.getTime() / 1000);
-  dataSet.push(await getNodeData("node1/birdEvents", sec - tid));
-  dataSet.push(await getNodeData("node2/birdEvents", sec - tid));
-  dataSet.push(await getNodeData("node3/birdEvents", sec - tid));
+
+  let dataSet = [];
+  let nodeNavn = [];
+
+  let ref = firebase.database().ref();
+
+  // Legger nodenummerene i en egen liste. Må gjøres sånn pga. async-greier.
+  ref.on('value', function(snapshot){
+    let nodes = snapshot.val();
+    let newNodes = Object.values(nodes);
+    for (let node of newNodes) {
+      if (typeof(node) === 'object') {
+          nodeNavn.push(node.nodeNumber);
+      }
+    }
+  });
+
+  // Henter nodeData for alle nodene i databasen.
+  for (let nr of nodeNavn) {
+    let nodeString = 'node' + nr + '/birdEvents';
+    dataSet.push(await getNodeData(nodeString, sec - tid));
+  }
+
   return dataSet;
 }
 
-
+// Lager grafen
 async function makeChart(ds) {
   let dataChart = await ds;
   let ctx = document.getElementById('myChart');
 
-  // Forsøk på å iterere gjennom noder i database.
   let labs = [];
   let bgColor = [];
   let bordColor = [];
 
   let ref = firebase.database().ref();
 
+  // Lager nye stolper ved iterasjon av database
   ref.on('value', function(snapshot){
     let nodes = snapshot.val();
     let newNodes = Object.values(nodes);
@@ -51,7 +69,6 @@ async function makeChart(ds) {
         bordColor.push('rgba(33, 77, 170, 1)');
       }
     }
-    console.log(labs);
   });
 
   let birdChart = new Chart(ctx, {
@@ -80,6 +97,7 @@ async function makeChart(ds) {
   return birdChart;
 }
 
+// Knappene som styrer tidsperiodene.
 let btnDay = document.getElementById("btn-day");
 let btnUke = document.getElementById("btn-uke");
 let btnMnd = document.getElementById("btn-mnd");
@@ -108,7 +126,6 @@ btn6mnd.addEventListener("click", async function(){
   birdChartTemp.destroy();
   birdChart = makeChart(getData(15768000));
 });
-    
-      
+
       
 let birdChart = makeChart(0);
