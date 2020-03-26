@@ -31,26 +31,39 @@ async function getData(tid){
 
 
 async function makeChart(ds) {
-  let dataChart= await ds;
+  let dataChart = await ds;
   let ctx = document.getElementById('myChart');
+
+  // Forsøk på å iterere gjennom noder i database.
+  let labs = [];
+  let bgColor = [];
+  let bordColor = [];
+
+  let ref = firebase.database().ref();
+
+  ref.on('value', function(snapshot){
+    let nodes = snapshot.val();
+    let newNodes = Object.values(nodes);
+    for (let node of newNodes) {
+      if (typeof(node) === 'object') {
+        labs.push('Node ' + node.nodeNumber);
+        bgColor.push('rgba(33, 77, 170, 0.15)');
+        bordColor.push('rgba(33, 77, 170, 1)');
+      }
+    }
+    console.log(labs);
+  });
+
   let birdChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Node 1 ', 'Node 2', 'Node 3'],
+      labels: labs,
       datasets: [{
         label: 'Antall ganger observert fugler',
         data: dataChart,
         barPercentage: 0.4,
-        backgroundColor: [
-          'rgba(33, 77, 170, 0.15)',
-          'rgba(33, 77, 170, 0.15)',
-          'rgba(33, 77, 170, 0.15)',
-        ],
-        borderColor: [
-          'rgba(33, 77, 170, 1)',
-          'rgba(33, 77, 170, 1)',
-          'rgba(33, 77, 170, 1)',
-        ],
+        backgroundColor: bgColor,
+        borderColor: bordColor,
         borderWidth: 1
       }]
     },

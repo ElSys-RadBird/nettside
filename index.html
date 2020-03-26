@@ -99,7 +99,8 @@
         <div class="col-lg-12 col-xl-12 tm-intro-text-container">
           <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
           <p class='description'>
-            Dataen er hentet fra databasen, som oppdateres hver gang noden registrerer aktivitet over seg.
+            Dataen er hentet fra databasen, som oppdateres hver gang noden registrerer aktivitet over seg. <br>
+            Velg en tidsperiode for initialisere.
           </p>
           <input type="submit" class="btn btn-day" id="btn-day" value="Siste døgnet" />
           <input type="submit" class="btn btn-uke" id="btn-uke" value="Siste uken" />
@@ -134,7 +135,7 @@
                     <input type="number" name="name" id="name" required>
                   </div>
                   <div class="node-form">
-                    <input type="submit" value="Fjern">
+                    <input type="submit" id="remove_node_btn" value="Fjern"> 
                   </div>
                 </form>
               </div>

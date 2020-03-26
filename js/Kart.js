@@ -24,9 +24,11 @@ function initMap() {
   });
 
   let ref = firebase.database().ref();
-  ref.on('value', function(snapshot){
+  ref.once('value', function(snapshot){
+    // Henter nodene fra databasen
     let nodes = snapshot.val();
     let newNodes = Object.values(nodes);
+    // 
     for (let node of newNodes) {
       if (typeof(node) === 'object') {
         if (node.funker === true) {
