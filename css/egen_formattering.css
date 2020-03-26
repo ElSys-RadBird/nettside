@@ -4,21 +4,25 @@
 
 .node-add-and-remove {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     text-align: left;
     align-items: stretch;
 }
 
+.move-right {
+    justify-content: flex-end;
+}
+
 
 .remove-node {
-    flex-basis: 40%;
+    flex-basis: 28%;
     padding: 1%;
     /* align-content: space-around; */
 }
 
 
 .node-oversikt {
-    flex-basis: 40%;
+    flex-basis: 28%;
     padding: 1%;
     /* align-content: space-around; */
 }

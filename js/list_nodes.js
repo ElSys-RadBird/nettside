@@ -18,8 +18,13 @@ ref.once('value', function(snapshot){
     }
 })
 
-function removeNode(nodeNr){
-    let nodeToRemove = 'node' + nodeNr;
-    let userRef = firebase.database().ref(nodeToRemove);
-    userRef.remove();
+function removeNode(nodeNr, notPassword){
+    if (notPassword === 'detteErIkkePassordet') {
+        let nodeToRemove = 'node1/birdEvents/bird' + nodeNr;
+        let userRef = firebase.database().ref(nodeToRemove);
+        userRef.remove();
+    }
+    else {
+        console.log('Feil passord, taper.');
+    }
 }

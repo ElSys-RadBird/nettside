@@ -135,7 +135,8 @@
             <div class="remove-node bord">
                 <h3 class="remove-node-header">Fjern / nullstill node:</h3>
                 Nodenummer: <input type="number" name="nodeNr" id="nodeNr"><br>
-                <button onclick="removeNode(document.getElementById('nodeNr').value)">Fjern / nullstill</button>
+                Passord: <input type="password" name="notPassword" id="notPassword"><br>
+                <button onclick="removeNode(document.getElementById('nodeNr').value, document.getElementById('notPassword').value)">Fjern / nullstill</button>
               </div>
             </section>
           </div>
@@ -152,7 +153,8 @@
               <h2 class="tm-text-primary mb-4 tm-section-title">Hva gjør vi?</h2>
               <p class="mb-4 tm-intro-text">
                 Vi er en gruppe studenter som går andreåret på Elektronisk systemdesign og innnovasjon på NTNU, som har fått i oppgave av TrønderEnergi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle.
-                Løsningen skal implemnteres ved bruk av radar, der vi ønsker å bruker flere noder for å dekke et tilstreklig stort område.</p>
+                Løsningen skal implemnteres ved bruk av radar, der vi ønsker å bruker flere noder for å dekke et tilstreklig stort område. <br><br>
+                Den fullstendige rapporten på prosjektet finner du <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>her</a>.</p>
           </div>
         </div>
       </div>
@@ -168,7 +170,7 @@
             <div class="text-center col-12">
                 <h2 class="tm-section-title mb-4">Kontakt oss</h2>
                 <p class="mb-5">
-                  Har du noen spørsmål angående produktet, eller noen du lurer på ta kontakt.
+                  Ta gjerne kontakt om du har noen spørsmål!
                 </p><br>
             </div>
 
