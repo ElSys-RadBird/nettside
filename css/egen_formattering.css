@@ -13,17 +13,19 @@
 .remove-node {
     flex-basis: 40%;
     padding: 1%;
+    /* align-content: space-around; */
 }
 
 
 .node-oversikt {
     flex-basis: 40%;
     padding: 1%;
+    /* align-content: space-around; */
 }
 
-.input-box {
+/* .input-box {
     align-self: right;
-}
+} */
 
 #map {
     border: 2px solid #3377AA;

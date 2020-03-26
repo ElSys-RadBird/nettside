@@ -18,9 +18,8 @@ ref.once('value', function(snapshot){
     }
 })
 
-function removeNode(n){
-    let nodeToRemove = 'node1/birdEvents/bird' + n;
-    console.log(nodeToRemove);
+function removeNode(nodeNr){
+    let nodeToRemove = 'node' + nodeNr;
     let userRef = firebase.database().ref(nodeToRemove);
     userRef.remove();
 }
