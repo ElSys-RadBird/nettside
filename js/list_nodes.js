@@ -21,14 +21,13 @@ ref.once('value', function(snapshot){
 })
 
 
-let password;
 function removeNode(nodeNr, notPassword){
+    let password;
     firebase.database().ref('password').once('value', getPassword);
 
     function getPassword(pw){
         password = pw.val();
     }
-    console.log(password);
 
     if (notPassword === password) {
         let nodeToRemove = 'node1/birdEvents/bird' + nodeNr;
