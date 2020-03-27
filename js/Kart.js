@@ -28,11 +28,11 @@ function initMap() {
     // Henter nodene fra databasen
     let nodes = snapshot.val();
     let newNodes = Object.values(nodes);
-    // 
+    let i = 0;
     for (let node of newNodes) {
       if (typeof(node) === 'object') {
         if (node.funker === true) {
-          new google.maps.Circle({
+          this['circle'+i] = new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
@@ -40,11 +40,11 @@ function initMap() {
             map: map,
             center: node.position.center,
             radius: 100,   
-            fillColor: '#00FF00'       
+            fillColor: '#00FF00',
           });
         }
         else if (node.funker === false) { 
-          new google.maps.Circle({
+          this['circle'+i] = new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
@@ -52,19 +52,9 @@ function initMap() {
             map: map,
             center: node.position.center,
             radius: 100,   
-            fillColor: '#FF0000'       
+            fillColor: '#FF0000',
           });
         }
-        // let name = 1;
-        // let marker = new google.maps.Marker({
-        //   position: node.center,
-        //   icon: {
-        //     path: google.maps.SymbolPath.name,
-        //     scale: 10
-        //   },
-        //   draggable: false,
-        //   map: map
-        // });
       }
     }
   })

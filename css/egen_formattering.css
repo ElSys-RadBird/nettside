@@ -7,6 +7,7 @@
     justify-content: center;
     text-align: left;
     align-items: stretch;
+    flex-wrap: wrap;
 }
 
 .move-right {
