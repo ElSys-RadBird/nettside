@@ -206,11 +206,4 @@ date2.addEventListener("input", async function(){
   }
 });
 
-// date2.addEventListener("input", async function(){
-//   let birdChartTemp = await birdChart;
-//   birdChartTemp.destroy();
-//   let dateTemp = new Date(document.getElementById('date-2').value).getTime() / 1000;
-//   birdChart = makeChart(getData(dateTemp));
-// });
-
 let birdChart = makeChart();
