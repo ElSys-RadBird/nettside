@@ -16,28 +16,11 @@ firebase.initializeApp(firebaseConfig);
 let db = firebase.database();
 
 // Henter dataen fra en node.
-async function getNodeData(node, tid){
-  let nodeLength = 0;
-  return new Promise (resolve => {
-    let ref = firebase.database().ref(node);
-    ref.orderByChild('tid').startAt(tid).on('value', function(snapshot){
-      let nodeData = snapshot.val();
-      for (key in nodeData) {
-          if (nodeData.hasOwnProperty(key)){
-              nodeLength++;
-          }
-      }
-      resolve(nodeLength);
-    })
-  });
-}
-
-// Henter dataen fra en node.
 async function getNodeData2(node, tid1, tid2){
   let nodeLength = 0;
   return new Promise (resolve => {
     let ref = firebase.database().ref(node);
-    ref.orderByChild('tid').startAt(tid1).endAt(tid2).on('value', function(snapshot){
+    ref.orderByChild('tid').startAt(tid1).endAt(tid2 + 86400).on('value', function(snapshot){
       let nodeData = snapshot.val();
       for (key in nodeData) {
           if (nodeData.hasOwnProperty(key)){
@@ -140,34 +123,66 @@ let date2 = document.getElementById("date-2");
 let dateBtn = document.getElementById("dateBtn");
 
 
+
 btnDay.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
   birdChart = makeChart(getData(86400, 0));
+  
+  // Dagens dato
+  date1.value = new Date().toJSON().slice(0,10);
+  date2.value = new Date().toJSON().slice(0,10);
 });
 
 btnUke.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
   birdChart = makeChart(getData(604800, 0));
-});
+  
+  // Dato forrige uke
+  let dateObj = new Date(); 
+  dateObj.setDate(dateObj.getDate() - 7);   
+  date1.value = dateObj.toJSON().slice(0,10);
+  // Dagens dato
+  date2.value = new Date().toJSON().slice(0,10);});
 
 btnMnd.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
   birdChart = makeChart(getData(2592000, 0));
+
+    // Dato forrige måned
+    let dateObj = new Date(); 
+    dateObj.setDate(dateObj.getDate() - 30);   
+    date1.value = dateObj.toJSON().slice(0,10);
+    // Dagens dato
+    date2.value = new Date().toJSON().slice(0,10);
 });
   
 btn6mnd.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
   birdChart = makeChart(getData(15768000, 0));
+
+  // Dato forrige måned
+  let dateObj = new Date(); 
+  dateObj.setDate(dateObj.getDate() - 180);   
+  date1.value = dateObj.toJSON().slice(0,10);
+  // Dagens dato
+  date2.value = new Date().toJSON().slice(0,10);
 });
 
 btnAar.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
   birdChart = makeChart(getData(31556926, 0));
+
+  // Dato forrige måned
+  let dateObj = new Date(); 
+  dateObj.setDate(dateObj.getDate() - 365);   
+  date1.value = dateObj.toJSON().slice(0,10);
+  // Dagens dato
+  date2.value = new Date().toJSON().slice(0,10);
 });
 
 date1.addEventListener("input", async function(){
@@ -175,6 +190,7 @@ date1.addEventListener("input", async function(){
   let chosenDate2 = document.getElementById('date-2').value;
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
+
   if (chosenDate1 && chosenDate2) {
     let unixTime = Math.round(new Date().getTime() / 1000);
     let dateTemp1 = unixTime - new Date(chosenDate1).getTime() / 1000;
@@ -191,10 +207,15 @@ date1.addEventListener("input", async function(){
 date2.addEventListener("input", async function(){
   let chosenDate1 = document.getElementById('date-1').value;
   let chosenDate2 = document.getElementById('date-2').value;
+  
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
+
   if (chosenDate1 && chosenDate2) {
-    let unixTime = Math.round(new Date().getTime() / 1000);
+    chosenDate1 = new Date(chosenDate1);
+    chosenDate2 = new Date(chosenDate2);
+
+    let unixTime = Math.round(new Date().getTime() / 1000);    
     let dateTemp1 = unixTime - new Date(chosenDate1).getTime() / 1000;
     let dateTemp2 = unixTime - new Date(chosenDate2).getTime() / 1000;
     let birdChartTemp = await birdChart;
