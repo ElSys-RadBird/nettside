@@ -129,8 +129,11 @@ btnDay.addEventListener("click", async function(){
   birdChartTemp.destroy();
   birdChart = makeChart(getData(86400, 0));
   
+  // Dato forrige uke
+  let dateObj = new Date(); 
+  dateObj.setDate(dateObj.getDate() - 1);   
+  date1.value = dateObj.toJSON().slice(0,10);
   // Dagens dato
-  date1.value = new Date().toJSON().slice(0,10);
   date2.value = new Date().toJSON().slice(0,10);
 });
 
