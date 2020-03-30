@@ -32,8 +32,25 @@ async function getNodeData(node, tid){
   });
 }
 
+// Henter dataen fra en node.
+async function getNodeData2(node, tid1, tid2){
+  let nodeLength = 0;
+  return new Promise (resolve => {
+    let ref = firebase.database().ref(node);
+    ref.orderByChild('tid').startAt(tid1).endAt(tid2).on('value', function(snapshot){
+      let nodeData = snapshot.val();
+      for (key in nodeData) {
+          if (nodeData.hasOwnProperty(key)){
+              nodeLength++;
+          }
+      }
+      resolve(nodeLength);
+    })
+  });
+}
+
 // Henter dataen fra alle nodene.
-async function getData(tid){
+async function getData(tid1, tid2){
   let unixTime = Math.round(new Date().getTime() / 1000);
 
   let dataSet = [];
@@ -55,7 +72,7 @@ async function getData(tid){
   // Henter nodeData for alle nodene i databasen.
   for (let nr of nodeNumbers) {
     let nodeString = 'node' + nr + '/birdEvents';
-    dataSet.push(await getNodeData(nodeString, unixTime - tid));
+    dataSet.push(await getNodeData2(nodeString, unixTime - tid1, unixTime - tid2));
   }
 
   return dataSet;
@@ -117,43 +134,72 @@ let btnDay = document.getElementById("btn-day");
 let btnUke = document.getElementById("btn-uke");
 let btnMnd = document.getElementById("btn-mnd");
 let btn6mnd = document.getElementById("btn-6mnd");
+let btnAar = document.getElementById("btn-aar");
 let date1 = document.getElementById("date-1");
+let date2 = document.getElementById("date-2");
+let dateBtn = document.getElementById("dateBtn");
+
 
 btnDay.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
-  birdChart = makeChart(getData(86400));
+  birdChart = makeChart(getData(86400, 0));
 });
 
 btnUke.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
-  birdChart = makeChart(getData(604800));
+  birdChart = makeChart(getData(604800, 0));
 });
 
 btnMnd.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
-  birdChart = makeChart(getData(2592000));
+  birdChart = makeChart(getData(2592000, 0));
 });
   
 btn6mnd.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
-  birdChart = makeChart(getData(15768000));
+  birdChart = makeChart(getData(15768000, 0));
+});
+
+btnAar.addEventListener("click", async function(){
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
+  birdChart = makeChart(getData(31556926, 0));
 });
 
 date1.addEventListener("input", async function(){
-  let chosenDate = document.getElementById('date-1').value;
+  let chosenDate1 = document.getElementById('date-1').value;
+  let chosenDate2 = document.getElementById('date-2').value;
   let birdChartTemp = await birdChart;
   birdChartTemp.destroy();
-  if (chosenDate) {
+  if (chosenDate1 && chosenDate2) {
     let unixTime = Math.round(new Date().getTime() / 1000);
-    let dateTemp = unixTime - new Date(chosenDate).getTime() / 1000;
+    let dateTemp1 = unixTime - new Date(chosenDate1).getTime() / 1000;
+    let dateTemp2 = unixTime - new Date(chosenDate2).getTime() / 1000;
     let birdChartTemp = await birdChart;
     birdChartTemp.destroy();
-    birdChart = makeChart(getData(dateTemp));
-    document.getElementById("date-1").setAttribute('max', new Date());
+    birdChart = makeChart(getData(dateTemp1, dateTemp2));
+  }
+  else {
+    birdChart = makeChart(0);
+  }
+});
+
+date2.addEventListener("input", async function(){
+  let chosenDate1 = document.getElementById('date-1').value;
+  let chosenDate2 = document.getElementById('date-2').value;
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
+  if (chosenDate1 && chosenDate2) {
+    let unixTime = Math.round(new Date().getTime() / 1000);
+    let dateTemp1 = unixTime - new Date(chosenDate1).getTime() / 1000;
+    let dateTemp2 = unixTime - new Date(chosenDate2).getTime() / 1000;
+    let birdChartTemp = await birdChart;
+    birdChartTemp.destroy();
+    birdChart = makeChart(getData(dateTemp1, dateTemp2));
   }
   else {
     birdChart = makeChart(0);
