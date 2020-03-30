@@ -34,8 +34,7 @@ async function getNodeData(node, tid){
 
 // Henter dataen fra alle nodene.
 async function getData(tid){
-  let unTime = new Date();
-  let sec = Math.round(unTime.getTime() / 1000);
+  let unixTime = Math.round(new Date().getTime() / 1000);
 
   let dataSet = [];
   let nodeNumbers = [];
@@ -56,7 +55,7 @@ async function getData(tid){
   // Henter nodeData for alle nodene i databasen.
   for (let nr of nodeNumbers) {
     let nodeString = 'node' + nr + '/birdEvents';
-    dataSet.push(await getNodeData(nodeString, sec - tid));
+    dataSet.push(await getNodeData(nodeString, unixTime - tid));
   }
 
   return dataSet;
@@ -109,6 +108,7 @@ async function makeChart(ds) {
       }
     }
   });
+
   return birdChart;
 }
 
@@ -117,6 +117,7 @@ let btnDay = document.getElementById("btn-day");
 let btnUke = document.getElementById("btn-uke");
 let btnMnd = document.getElementById("btn-mnd");
 let btn6mnd = document.getElementById("btn-6mnd");
+let date1 = document.getElementById("date-1");
 
 btnDay.addEventListener("click", async function(){
   let birdChartTemp = await birdChart;
@@ -142,5 +143,28 @@ btn6mnd.addEventListener("click", async function(){
   birdChart = makeChart(getData(15768000));
 });
 
-      
-let birdChart = makeChart(0);
+date1.addEventListener("input", async function(){
+  let chosenDate = document.getElementById('date-1').value;
+  let birdChartTemp = await birdChart;
+  birdChartTemp.destroy();
+  if (chosenDate) {
+    let unixTime = Math.round(new Date().getTime() / 1000);
+    let dateTemp = unixTime - new Date(chosenDate).getTime() / 1000;
+    let birdChartTemp = await birdChart;
+    birdChartTemp.destroy();
+    birdChart = makeChart(getData(dateTemp));
+    document.getElementById("date-1").setAttribute('max', new Date());
+  }
+  else {
+    birdChart = makeChart(0);
+  }
+});
+
+// date2.addEventListener("input", async function(){
+//   let birdChartTemp = await birdChart;
+//   birdChartTemp.destroy();
+//   let dateTemp = new Date(document.getElementById('date-2').value).getTime() / 1000;
+//   birdChart = makeChart(getData(dateTemp));
+// });
+
+let birdChart = makeChart();
