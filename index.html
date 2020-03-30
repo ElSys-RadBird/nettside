@@ -35,16 +35,14 @@
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars navbar-toggler-icon"></i>
-
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#kart">Kart</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#data">Data</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="#kart">Kart</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link tm-nav-link" href="#noder">Noder</a>
@@ -70,80 +68,80 @@
       </div>
 
       <div class="tm-next tm-intro-next">
-        <a href="#kart" class="text-center tm-down-arrow-link">
+        <a href="#data" class="text-center tm-down-arrow-link">
           <i class="fas fa-2x fa-arrow-down tm-down-arrow"></i>
         </a>
       </div>
     </section>
-
-    <section id="kart" class="tm-section-pad-top"> <!--Her skal kartet implenteres-->
-    <div class="container">
-      <div class="col-lg-12 col-xl-12">
-        <div class="text-center col-12">
-          <h2 class="tm-text-primary tm-section-title mb-4">Kart </h2>
-        </div>
-        <p class='description'>
-          Nodenes plassering er hentet fra nodens potensiometer (snart GPS), og oppdateres hver gang noden utløses av en fugl. <br>
-          Grønn og rød sirkel angir om noden er henholdsvis <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>.
-        </p>
-      <div id="map" style="height: 500px; "></div>
-      <script src="js/Kart.js"></script>       <!--Kartet er her-->
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
-      </div>
-    </div>
-  </section>
-
-  <section id="data" class="tm-section-pad-top">
-    <div class="container">
-      <div class="row tm-content-box">
-        <div class="col-lg-12 col-xl-12 tm-intro-text-container">
-          <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
-          <p class='description'>
-            Dataen er hentet fra databasen, som oppdateres hver gang noden registrerer aktivitet over seg. <br>
-            Velg en tidsperiode for initialisere.
-          </p>
-          <input type="submit" class="btn btn-day" id="btn-day" value="Siste døgnet" />
-          <input type="submit" class="btn btn-uke" id="btn-uke" value="Siste uken" />
-          <input type="submit" class="btn btn-mnd" id="btn-mnd" value="Siste måneden" />
-          <input type="submit" class="btn btn-6mnd" id="btn-6mnd" value="Siste halvåret" />
-          <div class="bord">
-            <canvas id="myChart" width="500" height="200"></canvas>
-            <script src="js/radbird.js"></script>           <!--Grafen er her-->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="noder" class="tm-section-pad-top">
-    <div class="container">
-      <div class="row tm-content-box">
-        <div class="col-lg-12 col-xl-12">
-          <div class=tm-intro-text-container>
-            <h2 class="tm-text-primary mb-4 tm-section-title">Noder</h2>
+    
+    <section id="data" class="tm-section-pad-top">
+      <div class="container">
+        <div class="row tm-content-box">
+          <div class="col-lg-12 col-xl-12 tm-intro-text-container">
+            <h2 class="tm-text-primary mb-4 tm-section-title">Data</h2>
             <p class='description'>
-              Nodeoversikten viser om hver node er <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>. Dersom noden er <span style = 'color: red'> INAKTIV</span>, har den muligens veltet. <br>
-              Nye noder vil bli lagt til automatisk, med nodenummer gitt ved installasjon. <br>
-              Fjern en node ved å skrive inn nodenummeret. Dersom noden fortsetter å sende data senere, vil den bli nullstilt.
+              Dataen er hentet fra databasen, som oppdateres hver gang noden registrerer aktivitet over seg. <br>
+              Velg en tidsperiode for initialisere.
             </p>
-            <section class="node-add-and-remove">
-              <section class="node-oversikt bord">
-                <h2 class="node-oversikt-header">Nodeoversikt</h2>
-                <p id = "n-o"></p>
-                <script src="js/list_nodes.js"></script>
-              </section>
-            <div class="remove-node bord">
-                <h3 class="remove-node-header">Fjern / nullstill node:</h3>
-                Nodenummer: <input type="number" name="nodeNr" id="nodeNr"><br>
-                Passord: <input type="password" name="notPassword" id="notPassword"><br>
-                <button class="btn" onclick="removeNode(document.getElementById('nodeNr').value, document.getElementById('notPassword').value)">Fjern / nullstill</button>
-              </div>
-            </section>
+            <input type="submit" class="btn btn-day" id="btn-day" value="Siste døgnet" />
+            <input type="submit" class="btn btn-uke" id="btn-uke" value="Siste uken" />
+            <input type="submit" class="btn btn-mnd" id="btn-mnd" value="Siste måneden" />
+            <input type="submit" class="btn btn-6mnd" id="btn-6mnd" value="Siste halvåret" />
+            <div class="bord">
+              <canvas id="myChart" width="500" height="200"></canvas>
+              <script src="js/radbird.js"></script>           <!--Grafen er her-->
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </section>
+    
+    <section id="kart" class="tm-section-pad-top"> <!--Her skal kartet implenteres-->
+      <div class="container">
+        <div class="col-lg-12 col-xl-12">
+          <div class="text-center col-12">
+            <h2 class="tm-text-primary tm-section-title mb-4">Kart </h2>
+          </div>
+          <p class='description'>
+            Nodenes plassering er hentet fra nodens potensiometer (snart GPS), og oppdateres hver gang noden utløses av en fugl. <br>
+            Grønn og rød sirkel angir om noden er henholdsvis <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>.
+          </p>
+        <div id="map" style="height: 500px; "></div>
+        <script src="js/Kart.js"></script>       <!--Kartet er her-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
+        </div>
+      </div>
+    </section>
+
+    <section id="noder" class="tm-section-pad-top">
+      <div class="container">
+        <div class="row tm-content-box">
+          <div class="col-lg-12 col-xl-12">
+            <div class=tm-intro-text-container>
+              <h2 class="tm-text-primary mb-4 tm-section-title">Noder</h2>
+              <p class='description'>
+                Nodeoversikten viser om hver node er <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>. Dersom noden er <span style = 'color: red'> INAKTIV</span>, har den muligens veltet. <br>
+                Nye noder vil bli lagt til automatisk, med nodenummer gitt ved installasjon. <br>
+                Fjern en node ved å skrive inn nodenummeret. Dersom noden fortsetter å sende data senere, vil den bli nullstilt.
+              </p>
+              <section class="node-add-and-remove">
+                <section class="node-oversikt bord">
+                  <h2 class="node-oversikt-header">Nodeoversikt</h2>
+                  <p id = "n-o"></p>
+                  <script src="js/list_nodes.js"></script>
+                </section>
+              <div class="remove-node bord">
+                  <h3 class="remove-node-header">Fjern / nullstill node:</h3>
+                  Nodenummer: <input type="number" name="nodeNr" id="nodeNr"><br>
+                  Passord: <input type="password" name="notPassword" id="notPassword"><br>
+                  <button class="btn" onclick="removeNode(document.getElementById('nodeNr').value, document.getElementById('notPassword').value)">Fjern / nullstill</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> 
 
     <section id="whatwedo" class="tm-section-pad-top">
       <div class="container">
@@ -162,18 +160,14 @@
 
     <!-- Contact -->
     <section id="contact" class="tm-section-pad-top tm-parallax-2">
-
       <div class="container tm-container-contact">
-
         <div class="row">
-
             <div class="text-center col-12">
                 <h2 class="tm-section-title mb-4">Kontakt oss</h2>
                 <p class="mb-5">
                   Ta gjerne kontakt om du har noen spørsmål!
                 </p><br>
             </div>
-
             <div class="col-sm-12 col-md-6">
               <form action="https://formspree.io/xgeyogaw" method="POST">
                 <input id="name" name="name" type="text" placeholder="Ditt navn" class="tm-input" required />
@@ -184,52 +178,40 @@
                 <button type="submit" class="btn tm-btn-submit">Send</button>
               </form>
             </div>
-
             <div class="col-sm-12 col-md-6">
-
                 <div class="contact-item">
                   <a rel="nofollow" href="https://www.tooplate.com/contact" class="item-link">
                       <i class="far fa-2x fa-comment mr-4"></i>
                       <span class="mb-0">Chat Online</span>
                   </a>
                 </div>
-
                 <div class="contact-item">
                   <a rel="nofollow" href="mailto:radbird@ntnu.no" class="item-link">
                       <i class="far fa-2x fa-envelope mr-4"></i>
                       <span class="mb-0">radbird@ntnu.no</span>
                   </a>
                 </div>
-
                 <div class="contact-item">
                   <a rel="nofollow" href="https://www.google.com/maps/place/NTNU+-+Fakultet+for+informasjonsteknologi+og+elektroteknikk+(IE)/@63.4108392,10.3802181,15.09z/data=!4m8!1m2!2m1!1sel+bygget+ntnu!3m4!1s0x0:0x4268592e6bdb68cc!8m2!3d63.4178574!4d10.4018211" class="item-link">
                       <i class="fas fa-2x fa-map-marker-alt mr-4"></i>
                       <span class="mb-0">Besøk oss</span>
                   </a>
                 </div>
-
                 <div class="contact-item">
                   <a rel="nofollow" href="tel:0100200340" class="item-link">
                       <i class="fas fa-2x fa-phone-square mr-4"></i>
                       <span class="mb-0">255-662-5566</span>
                   </a>
                 </div>
-
                 <div class="contact-item">&nbsp;</div>
-
             </div>
-
-
         </div><!-- row ending -->
-
       </div>
-
-      	<footer class="text-center small tm-footer">
-          <p class="mb-0">
-          Copyright &copy; 2020 RadBird
-          </p>
-        </footer>
-
+      <footer class="text-center small tm-footer">
+        <p class="mb-0">
+        Copyright &copy; 2020 RadBird
+        </p>
+      </footer>
     </section>
 
     <script src="js/jquery-1.9.1.min.js"></script>

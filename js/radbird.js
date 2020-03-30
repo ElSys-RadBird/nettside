@@ -1,18 +1,33 @@
 // Kode for graf
 
+
+var firebaseConfig = {
+  apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
+  authDomain: "radbird-elsys.firebaseapp.com",
+  databaseURL: "https://radbird-elsys.firebaseio.com",
+  projectId: "radbird-elsys",
+  storageBucket: "radbird-elsys.appspot.com",
+  messagingSenderId: "78896005129",   
+  appId: "1:78896005129:web:9faab86bab14880b3db8d8",
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+let db = firebase.database();
+
 // Henter dataen fra en node.
 async function getNodeData(node, tid){
-  let lengdeNode = 0;
+  let nodeLength = 0;
   return new Promise (resolve => {
     let ref = firebase.database().ref(node);
     ref.orderByChild('tid').startAt(tid).on('value', function(snapshot){
       let nodeData = snapshot.val();
       for (key in nodeData) {
           if (nodeData.hasOwnProperty(key)){
-              lengdeNode++;
+              nodeLength++;
           }
       }
-      resolve(lengdeNode);
+      resolve(nodeLength);
     })
   });
 }
@@ -23,7 +38,7 @@ async function getData(tid){
   let sec = Math.round(unTime.getTime() / 1000);
 
   let dataSet = [];
-  let nodeNavn = [];
+  let nodeNumbers = [];
 
   let ref = firebase.database().ref();
 
@@ -33,13 +48,13 @@ async function getData(tid){
     let newNodes = Object.values(nodes);
     for (let node of newNodes) {
       if (typeof(node) === 'object') {
-          nodeNavn.push(node.nodeNumber);
+          nodeNumbers.push(node.nodeNumber);
       }
     }
   });
 
   // Henter nodeData for alle nodene i databasen.
-  for (let nr of nodeNavn) {
+  for (let nr of nodeNumbers) {
     let nodeString = 'node' + nr + '/birdEvents';
     dataSet.push(await getNodeData(nodeString, sec - tid));
   }
