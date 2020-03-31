@@ -108,10 +108,12 @@
             <h2 class="tm-text-primary tm-section-title mb-4">Kart </h2>
           </div>
           <p class='description'>
-            Nodenes plassering er hentet fra nodens potensiometer (snart GPS), og oppdateres hver gang noden utløses av en fugl. <br>
-            Grønn og rød sirkel angir om noden er henholdsvis <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>.
+            Nodenes plassering er hentet fra nodens potensiometer (les: GPS), og oppdateres hver gang en node observerer en fugl. <br>
+            Grønn og rød sirkel angir om noden er henholdsvis <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>.<br>
+            Trykk på en node for å identifisere den.
           </p>
-        <div id="map"></div>
+          <p class="description node-identification" id="node-id"></p>
+        <div id="map" style="height: 500px;"></div>
         <script src="js/Kart.js"></script>       <!--Kartet er her-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
         </div>

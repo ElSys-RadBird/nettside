@@ -1,10 +1,7 @@
 function hehe1() {
     let logo = document.getElementById("logo");
-    let i = 2;
-    let newFunc = 'hehe' + i + '()';
     logo.setAttribute("src", "img/icon_bird_text2.png");
     logo.setAttribute("onclick", "hehe2()")
-    i++;
 }
 
 function hehe2() {

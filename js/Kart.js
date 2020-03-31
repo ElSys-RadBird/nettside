@@ -15,33 +15,41 @@ function initMap() {
     let nodes = snapshot.val();
     let newNodes = Object.values(nodes);
     let i = 0;
+    let circles = {};
     for (let node of newNodes) {
       if (typeof(node) === 'object') {
         if (node.funker === true) {
-          new google.maps.Circle({
+          let newCircle = new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
-            fillOpacity: 0.35,
+            fillOpacity: 0.6,
             map: map,
             center: node.position.center,
             radius: 100,   
-            fillColor: '#00FF00',
+            fillColor: 'green'
           });
+          circles[node.nodeNumber] = newCircle;
         }
         else if (node.funker === false) { 
-          new google.maps.Circle({
+          let newCircle = new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
-            fillOpacity: 0.35,
+            fillOpacity: 0.4,
             map: map,
             center: node.position.center,
             radius: 100,   
-            fillColor: '#FF0000',
+            fillColor: 'red'
           });
+          circles[node.nodeNumber] = newCircle;
         }
+        google.maps.event.addListener(circles[node.nodeNumber], 'click', function(){
+          document.getElementById('node-id').innerHTML = 'Node ' + node.nodeNumber;
+          document.getElementById('node-id').style.color = circles[node.nodeNumber].fillColor;
+        })
       }
     }
   })
 }
+
