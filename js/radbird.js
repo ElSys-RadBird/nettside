@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 let db = firebase.database();
 
 // Henter dataen fra en node.
-async function getNodeData2(node, tid1, tid2){
+function getNodeData2(node, tid1, tid2){
   let nodeLength = 0;
   return new Promise (resolve => {
     let ref = firebase.database().ref(node);
@@ -25,12 +25,13 @@ async function getNodeData2(node, tid1, tid2){
       for (key in nodeData) {
           if (nodeData.hasOwnProperty(key)){
               nodeLength++;
-          }
+            }
       }
       resolve(nodeLength);
     })
   });
 }
+
 
 // Henter dataen fra alle nodene.
 async function getData(tid1, tid2){

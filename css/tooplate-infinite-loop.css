@@ -689,7 +689,7 @@ p {
     margin: 0;
   }
 }
-.logo{
+/* .logo{
   display: block;
   text-indent: 0px;
   position: relative; left: -50px; top:-25px; 
@@ -697,7 +697,7 @@ p {
   height: 150px;
   background: url(img/tronder_energi.svg);
   background-size: contain;
-}
+} */
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 

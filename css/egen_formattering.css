@@ -44,3 +44,9 @@
 ::placeholder {
     color: gray;
 }
+
+.logo {
+    margin: auto;
+    width: 25%;
+    height: auto;
+}

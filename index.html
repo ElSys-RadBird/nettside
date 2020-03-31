@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <!-- <script src="js/firebase_initializing.js"></script> -->
-    <link rel="icon" href="img/icon.png">
+    <link rel="icon" href="img/icon_bird_only4.png">
   </head>
 
   <body>
@@ -32,35 +32,35 @@
         <div class="container">
           <div class="tm-next">
               <a href="#infinite" class="navbar-brand">RADBIRD</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-bars navbar-toggler-icon"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#data">Data</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#kart">Kart</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#noder">Noder</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link tm-nav-link" href="#whatwedo">Hva gjør vi?</a>
-              </li>
-              <li class="nav-item">
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-bars navbar-toggler-icon"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#data">Data</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#kart">Kart</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#noder">Noder</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link tm-nav-link" href="#whatwedo">Hva gjør vi?</a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link tm-nav-link" href="#contact">Kontakt oss</a>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-
-      <div class="text-center tm-hero-text-container">
-        <div class="tm-hero-text-container-inner">
-          <h2 class="tm-hero-title">RADBIRD</h2>
+        </nav>
+        
+        <div class="text-center tm-hero-text-container">
+          <div class="tm-hero-text-container-inner">
+            <h2 class="tm-hero-title">RADBIRD</h2>
             <p class="tm-hero-subtitle">
               Fugledeteksjon og -kartlegging
             </p>
@@ -94,6 +94,7 @@
             <div class="bord">
               <canvas id="myChart" width="500" height="200"></canvas>
               <script src="js/radbird.js"></script>           <!--Grafen er her-->
+              <!-- <script src="js/lineChart.js"></script> -->
             </div>
           </div>
         </div>
@@ -110,7 +111,7 @@
             Nodenes plassering er hentet fra nodens potensiometer (snart GPS), og oppdateres hver gang noden utløses av en fugl. <br>
             Grønn og rød sirkel angir om noden er henholdsvis <span style = 'color: green'> AKTIV</span> eller <span style = 'color: red'> INAKTIV</span>.
           </p>
-        <div id="map" style="height: 500px; "></div>
+        <div id="map"></div>
         <script src="js/Kart.js"></script>       <!--Kartet er her-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMNbqaqaKi9GeJwywQmprU-sLipKDxbTU&callback=initMap" async defer></script>
         </div>
@@ -163,11 +164,25 @@
                 Vi er en gruppe studenter som går andreåret på Elektronisk systemdesign og innovasjon på NTNU, som har fått i oppgave av TrønderEnergi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle.
                 Løsningen skal implementeres ved bruk av radar, der vi ønsker å bruke flere noder for å dekke et tilstrekkelig stort område. <br><br>
                 Den fullstendige rapporten på prosjektet finner du <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>her</a>.</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
+        
+    <section id="pic" class="tm-section-pad-top">
+      <div class="container">
+        <div class="row tm-content-box"><!-- first row -->
+          <div class="col-lg-12 col-xl-12">
+            <div class="tm-intro-text-container">
+              <script src="js/hehe.js"></script>
+              <img src="img/icon_bird_text.png" id="logo" alt="Radbird logo" class="logo" onclick="hehe1()" tooltip="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        
     <!-- Contact -->
     <section id="contact" class="tm-section-pad-top tm-parallax-2">
       <div class="container tm-container-contact">
@@ -223,6 +238,7 @@
         </p>
       </footer>
     </section>
+
 
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="slick/slick.min.js"></script>

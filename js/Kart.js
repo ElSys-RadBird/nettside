@@ -18,7 +18,7 @@ function initMap() {
     for (let node of newNodes) {
       if (typeof(node) === 'object') {
         if (node.funker === true) {
-          this['circle'+i] = new google.maps.Circle({
+          new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
@@ -30,7 +30,7 @@ function initMap() {
           });
         }
         else if (node.funker === false) { 
-          this['circle'+i] = new google.maps.Circle({
+          new google.maps.Circle({
             strokeColor: '#3377AA',
             strokeOpacity: 1,
             strokeWeight: 2,
