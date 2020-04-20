@@ -2,8 +2,6 @@
 
 let ref = firebase.database().ref();
 
-
-
 ref.once('value', function(snapshot){
     let nodes = snapshot.val();
     let nodesArray = Object.values(nodes);
@@ -20,7 +18,6 @@ ref.once('value', function(snapshot){
     }
 })
 
-
 function removeNode(nodeNr, notPassword){
     let password;
     firebase.database().ref('password').once('value', getPassword);
@@ -30,7 +27,7 @@ function removeNode(nodeNr, notPassword){
     }
 
     if (notPassword === password) {
-        let nodeToRemove = 'node1/birdEvents/bird' + nodeNr;
+        let nodeToRemove = 'node' + nodeNr;
         let userRef = firebase.database().ref(nodeToRemove);
         userRef.remove();
     }

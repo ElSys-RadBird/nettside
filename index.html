@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>RADBIRD</title>
+    <title class="radbird">RADBIRD</title>
     <link rel="stylesheet" href="fontawesome-5.5/css/all.min.css" />
     <link rel="stylesheet" href="slick/slick.css">
     <link rel="stylesheet" href="slick/slick-theme.css">
@@ -31,7 +31,7 @@
       <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">
         <div class="container">
           <div class="tm-next">
-              <a href="#infinite" class="navbar-brand">RADBIRD</a>
+              <a href="#infinite" class="navbar-brand radbird">RADBIRD</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <i class="fas fa-bars navbar-toggler-icon"></i>
@@ -51,7 +51,7 @@
                   <a class="nav-link tm-nav-link" href="#whatwedo">Hva gjør vi?</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link tm-nav-link" href="#contact">Kontakt oss</a>
+                  <a class="nav-link tm-nav-link kont" href="#contact">Kontakt oss</a>
                 </li>
               </ul>
             </div>
@@ -60,8 +60,8 @@
         
         <div class="text-center tm-hero-text-container">
           <div class="tm-hero-text-container-inner">
-            <h2 class="tm-hero-title">RADBIRD</h2>
-            <p class="tm-hero-subtitle">
+            <h2 class="tm-hero-title radbird">RADBIRD</h2>
+            <p class="tm-hero-subtitle" id="description-radbird">
               Fugledeteksjon og -kartlegging
             </p>
         </div>
@@ -146,7 +146,7 @@
                     <label for="notPassword">
                       Passord: <input type="password" name="notPassword" id="notPassword"><br><br>
                     </label>
-                    <submit class="btn" onclick="removeNode(document.getElementById('nodeNr').value, document.getElementById('notPassword').value)">Fjern / nullstill</submit>
+                    <input type="button" class="btn" onclick="removeNode(document.getElementById('nodeNr').value, document.getElementById('notPassword').value)" value="Fjern / nullstill"></submit>
                   </form>
                 </div>
               </section>
@@ -165,7 +165,7 @@
               <p class="mb-4 tm-intro-text">
                 Vi er en gruppe studenter som går andreåret på Elektronisk systemdesign og innovasjon på NTNU, som har fått i oppgave av TrønderEnergi å lage en løsning for overvåkning av fugleaktiviteten i området rundt en vindmølle.
                 Løsningen skal implementeres ved bruk av radar, der vi ønsker å bruke flere noder for å dekke et tilstrekkelig stort område. <br><br>
-                Den fullstendige rapporten på prosjektet finner du <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>her</a>.</p>
+                Den fullstendige rapporten på prosjektet finner du <a href='https://www.youtube.com/watch?v=oHg5SJYRHA0'>her</a>.</p>
             </div>
           </div>
         </div>
@@ -190,10 +190,8 @@
       <div class="container tm-container-contact">
         <div class="row">
             <div class="text-center col-12">
-                <h2 class="tm-section-title mb-4">Kontakt oss</h2>
-                <p class="mb-5">
-                  Ta gjerne kontakt om du har noen spørsmål!
-                </p><br>
+                <h2 class="tm-section-title mb-4 kont">Kontakt oss</h2>
+                <p class="mb-5" id="kont-2">Ta gjerne kontakt om du har noen spørsmål!</p><br>
             </div>
             <div class="col-sm-12 col-md-6">
               <form action="https://formspree.io/xgeyogaw" method="POST">
@@ -202,7 +200,7 @@
                 <textarea id="message" name="message" rows="8" placeholder="Melding" class="tm-input" required></textarea>
                 <input type="hidden" name="_submit" value="https://radbird-elsys.firebaseapp.com/"/>
                 <input type="hidden" name="_language" value="no" />
-                <button type="submit" class="btn tm-btn-submit">Send</button>
+                <button type="submit" class="btn" style="width: 50%">Send</button>
               </form>
             </div>
             <div class="col-sm-12 col-md-6">
@@ -232,7 +230,7 @@
                 </div>
                 <div class="contact-item">&nbsp;</div>
             </div>
-        </div><!-- row ending -->
+        </div>
       </div>
       <footer class="text-center small tm-footer">
         <p class="mb-0">
@@ -411,5 +409,6 @@
         });
       });
     </script>
+  <audio src="img/some-music.mp3" id="some-music"></audio>
   </body>
 </html>

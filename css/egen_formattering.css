@@ -38,11 +38,12 @@
 }
 
 .btn {
-    border-color: lightgray;
+    /* border-color: lightgray; */
+    /* color: black; */
 }
 
 ::placeholder {
-    color: gray;
+    color: lightgray;
 }
 
 .logo {
@@ -53,4 +54,8 @@
 
 #node-id{
     font-size: 125%;
+}
+
+#window {
+    scroll-behavior: smooth;
 }

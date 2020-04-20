@@ -1,6 +1,15 @@
 // Kode for kart
 
 
+// TO DO:
+
+// Automatisk justere inn kartets visningsområde når siden lastes. 
+// Som et gjennomsnitt av alle nodenes posisjon, og stort nok zoom til at alle er med.
+      // Lage et array eller objekt med alle koordinatene, og regne ut snitt + maks differanse for å finne riktig zoom på en eller annen måte.
+
+// Kunne velge en node via nodenummer som skal markeres på kartet.
+
+
 function initMap() {
   // Create the map
   let map = new google.maps.Map(document.getElementById('map'), {
@@ -12,6 +21,8 @@ function initMap() {
   let ref = firebase.database().ref();
   ref.once('value', function(snapshot){
     // Henter nodene fra databasen
+    let averageLat;
+    let averageLng;
     let nodes = snapshot.val();
     let newNodes = Object.values(nodes);
     let i = 0;

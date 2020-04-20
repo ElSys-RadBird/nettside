@@ -1,5 +1,11 @@
 // Kode for graf
 
+// TO DO
+
+// En mulighet for å se data fra noder som er fjernet.
+
+// Vise nodenes data i et linjediagram med antall observasjoner som funksjon av dato, 
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyA2DnfBtReYSUeJf94VFzoqaN2_vNbid-s",
